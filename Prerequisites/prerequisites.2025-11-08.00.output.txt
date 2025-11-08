@@ -1,0 +1,79 @@
+-[ RECORD 1 ]-----+---------------------------------
+user              | postgres
+current_user      | postgres
+session_user      | postgres
+current_role      | postgres
+current_schema    | public
+current_date      | 2025-11-08
+current_time      | 11:40:14.013023+05:30
+current_timestamp | 2025-11-08 11:40:14.013023+05:30
+
+CREATE ROLE
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE DATABASE
+-[ RECORD 1 ]--+--------------------
+rolname        | www_crunchydata_com
+rolsuper       | f
+rolinherit     | f
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolconnlimit   | -1
+rolpassword    | ********
+rolvaliduntil  | NULL
+rolbypassrls   | f
+rolconfig      | NULL
+oid            | 49791
+
+-[ RECORD 1 ]--+--------------------
+oid            | 49797
+datname        | www_crunchydata_com
+datdba         | 49791
+encoding       | 6
+datlocprovider | c
+datistemplate  | f
+datallowconn   | t
+dathasloginevt | f
+datconnlimit   | -1
+datfrozenxid   | 744
+datminmxid     | 1
+dattablespace  | 49794
+datcollate     | en_US.UTF-8
+datctype       | en_US.UTF-8
+datlocale      | NULL
+daticurules    | NULL
+datcollversion | 2.42
+datacl         | NULL
+
+-[ RECORD 1 ]-------------------------
+oid        | 49794
+spcname    | www_crunchydata_com_data
+spcowner   | 49791
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 2 ]-------------------------
+oid        | 49795
+spcname    | www_crunchydata_com_index
+spcowner   | 49791
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 3 ]-------------------------
+oid        | 49796
+spcname    | www_crunchydata_com_temp
+spcowner   | 49791
+spcacl     | NULL
+spcoptions | NULL
+
+     Column     |  Type   
+----------------+---------
+ pg_reload_conf | boolean
+(1 row)
+
+ pg_reload_conf 
+----------------
+ t
+(1 row)
+
