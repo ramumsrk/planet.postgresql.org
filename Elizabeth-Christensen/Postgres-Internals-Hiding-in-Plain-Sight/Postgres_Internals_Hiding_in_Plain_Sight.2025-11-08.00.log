@@ -1,0 +1,511 @@
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+        user         |    current_user     |    session_user     |    current_role     | current_schema | current_date |     current_time      |        current_timestamp         
+---------------------+---------------------+---------------------+---------------------+----------------+--------------+-----------------------+----------------------------------
+ www_crunchydata_com | www_crunchydata_com | www_crunchydata_com | www_crunchydata_com | public         | 2025-11-08   | 12:08:25.183633+05:30 | 2025-11-08 12:08:25.183633+05:30
+(1 row)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS elizabeth_christensen AUTHORIZATION www_crunchydata_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS www_crunchydata_com AUTHORIZATION www_crunchydata_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+SET SESSION temp_tablespaces TO www_crunchydata_com_temp
+/************************/
+
+SET
+/******** QUERY *********/
+SET SESSION CURRENT_SCHEMA TO elizabeth_christensen
+/************************/
+
+/******** QUERY *********/
+SET SESSION SCHEMA TO elizabeth_christensen
+/************************/
+
+/******** QUERY *********/
+SET SESSION DEFAULT_SCHEMA TO elizabeth_christensen
+/************************/
+
+/******** QUERY *********/
+CREATE LOCAL TEMPORARY TABLE IF NOT EXISTS pg_temp.first_table (first_column SMALLINT NOT NULL DEFAULT 0:smallint) TABLESPACE www_crunchydata_com_temp
+/************************/
+
+/******** QUERY *********/
+CREATE LOCAL TEMPORARY TABLE IF NOT EXISTS pg_temp.first_table (first_column SMALLINT NOT NULL DEFAULT 0::smallint) TABLESPACE www_crunchydata_com_temp
+/************************/
+
+CREATE TABLE
+                Table "pg_temp_4.first_table"
+    Column    |   Type   | Collation | Nullable |   Default   
+--------------+----------+-----------+----------+-------------
+ first_column | smallint |           | not null | 0::smallint
+Tablespace: "www_crunchydata_com_temp"
+
+                Table "pg_temp_4.first_table"
+    Column    |   Type   | Collation | Nullable |   Default   
+--------------+----------+-----------+----------+-------------
+ first_column | smallint |           | not null | 0::smallint
+Tablespace: "www_crunchydata_com_temp"
+
+/******** QUERY *********/
+INSERT INTO pg_temp.first_table (first_column) VALUE (1), (2), (3), (4), (5), (6), (7), (8), (9), (10) RETURNING first_column
+/************************/
+
+/******** QUERY *********/
+INSERT INTO pg_temp.first_table (first_column) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10) RETURNING first_column
+/************************/
+
+ first_column 
+--------------
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+           10
+(10 rows)
+
+INSERT 0 10
+/******** QUERY *********/
+EXPLAIN (ANALYZE true, TIMING true, SETTINGS true, VERBOSE true, BUFFERS true, MEMORY true, COSTS true, FORMAT TEXT) SELECT first_column FROM first_table
+/************************/
+
+                                                     QUERY PLAN                                                      
+---------------------------------------------------------------------------------------------------------------------
+ Seq Scan on pg_temp.first_table  (cost=0.00..37.20 rows=2720 width=2) (actual time=0.024..0.028 rows=10.00 loops=1)
+   Output: first_column
+   Buffers: local hit=1
+ Query Identifier: 4967679091922196326
+ Planning:
+   Buffers: shared hit=4
+   Memory: used=6kB  allocated=8kB
+ Planning Time: 0.160 ms
+ Execution Time: 0.056 ms
+(9 rows)
+
+/******** QUERY *********/
+SELECT first_column FROM first_table
+/************************/
+
+ first_column 
+--------------
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+           10
+(10 rows)
+
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY pg_temp.first_table ADD CONSTRAINT pk_first_table_first_column PRIMARY KEY (first_column) USING INDEX TABLESPACE www_crunchydata_com_index
+/************************/
+
+ALTER TABLE
+                Table "pg_temp_4.first_table"
+    Column    |   Type   | Collation | Nullable |   Default   
+--------------+----------+-----------+----------+-------------
+ first_column | smallint |           | not null | 0::smallint
+Indexes:
+    "pk_first_table_first_column" PRIMARY KEY, btree (first_column), tablespace "www_crunchydata_com_index"
+Tablespace: "www_crunchydata_com_temp"
+
+                                   List of indexes
+  Schema   |            Name             | Type  |        Owner        |    Table    
+-----------+-----------------------------+-------+---------------------+-------------
+ pg_temp_4 | pk_first_table_first_column | index | www_crunchydata_com | first_table
+(1 row)
+
+                                   List of indexes
+  Schema   |            Name             | Type  |        Owner        |    Table    
+-----------+-----------------------------+-------+---------------------+-------------
+ pg_temp_4 | pk_first_table_first_column | index | www_crunchydata_com | first_table
+(1 row)
+
+              List of installed extensions
+ Name | Version | Default version | Schema | Description 
+------+---------+-----------------+--------+-------------
+(0 rows)
+
+                                 Access privileges
+  Schema   |    Name     | Type  | Access privileges | Column privileges | Policies 
+-----------+-------------+-------+-------------------+-------------------+----------
+ pg_temp_4 | first_table | table | NULL              |                   | 
+(1 row)
+
+           Connection Information
+      Parameter       |        Value        
+----------------------+---------------------
+ Database             | www_crunchydata_com
+ Client User          | www_crunchydata_com
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | true
+ GSSAPI Authenticated | false
+ Backend PID          | 13613
+ SSL Connection       | false
+ Superuser            | off
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+SHOW password_specification
+/************************/
+
+/******** QUERY *********/
+SHOW password_specifications
+/************************/
+
+/******** QUERY *********/
+SHOW password_configuration
+/************************/
+
+/******** QUERY *********/
+SHOW password_encryption
+/************************/
+
+ password_encryption 
+---------------------
+ scram-sha-256
+(1 row)
+
+                    List of tables
+  Schema   |    Name     | Type  |        Owner        
+-----------+-------------+-------+---------------------
+ pg_temp_4 | first_table | table | www_crunchydata_com
+(1 row)
+
+                    List of tables
+  Schema   |    Name     | Type  |        Owner        
+-----------+-------------+-------+---------------------
+ pg_temp_4 | first_table | table | www_crunchydata_com
+(1 row)
+
+                                   List of indexes
+  Schema   |            Name             | Type  |        Owner        |    Table    
+-----------+-----------------------------+-------+---------------------+-------------
+ pg_temp_4 | pk_first_table_first_column | index | www_crunchydata_com | first_table
+(1 row)
+
+                                   List of indexes
+  Schema   |            Name             | Type  |        Owner        |    Table    
+-----------+-----------------------------+-------+---------------------+-------------
+ pg_temp_4 | pk_first_table_first_column | index | www_crunchydata_com | first_table
+(1 row)
+
+                    List of tables
+  Schema   |    Name     | Type  |        Owner        
+-----------+-------------+-------+---------------------
+ pg_temp_4 | first_table | table | www_crunchydata_com
+(1 row)
+
+                          List of installed extensions
+  Name   | Version | Default version |   Schema   |         Description          
+---------+---------+-----------------+------------+------------------------------
+ plpgsql | 1.0     | 1.0             | pg_catalog | PL/pgSQL procedural language
+(1 row)
+
+                                 Access privileges
+  Schema   |    Name     | Type  | Access privileges | Column privileges | Policies 
+-----------+-------------+-------+-------------------+-------------------+----------
+ pg_temp_4 | first_table | table | NULL              |                   | 
+(1 row)
+
+                                 Access privileges
+  Schema   |    Name     | Type  | Access privileges | Column privileges | Policies 
+-----------+-------------+-------+-------------------+-------------------+----------
+ pg_temp_4 | first_table | table | NULL              |                   | 
+(1 row)
+
+     List of non-default configuration parameters
+         Parameter          |          Value           
+----------------------------+--------------------------
+ application_name           | psql
+ client_encoding            | UTF8
+ DateStyle                  | ISO, DMY
+ default_text_search_config | pg_catalog.english
+ lc_messages                | en_IN.UTF-8
+ lc_monetary                | en_IN.UTF-8
+ lc_numeric                 | en_IN.UTF-8
+ lc_time                    | en_IN.UTF-8
+ log_connections            | all
+ log_disconnections         | on
+ log_duration               | on
+ log_error_verbosity        | verbose
+ logging_collector          | on
+ log_hostname               | on
+ log_rotation_size          | 0
+ log_statement              | all
+ log_timezone               | Asia/Kolkata
+ log_truncate_on_rotation   | on
+ temp_tablespaces           | www_crunchydata_com_temp
+ TimeZone                   | Asia/Kolkata
+(20 rows)
+
+                                                              List of relations
+  Schema   |            Name             | Type  |        Owner        |    Table    | Persistence | Access method |    Size    | Description 
+-----------+-----------------------------+-------+---------------------+-------------+-------------+---------------+------------+-------------
+ pg_temp_4 | first_table                 | table | www_crunchydata_com | NULL        | temporary   | heap          | 8192 bytes | NULL
+ pg_temp_4 | pk_first_table_first_column | index | www_crunchydata_com | first_table | temporary   | btree         | 16 kB      | NULL
+(2 rows)
+
+                                         List of roles
+             Role name             |                         Attributes                         
+-----------------------------------+------------------------------------------------------------
+ adventure_works                   | No inheritance, Create DB, Cannot login
+ hr_manager                        | No inheritance
+ medium_dot_com                    | Create DB
+ northwind                         | No inheritance, Create DB
+ pagila                            | No inheritance, Create DB
+ postgres                          | Superuser, Create role, Create DB, Replication, Bypass RLS
+ usda                              | No inheritance, Create DB, Cannot login
+ www_crunchydata_com               | No inheritance
+ www_dot_linkedin_dot_com_learning | Create role, Create DB
+ www_dot_postgresql_dot_org        | Create DB
+
+                                                List of roles
+             Role name             |                         Attributes                         | Description 
+-----------------------------------+------------------------------------------------------------+-------------
+ adventure_works                   | No inheritance, Create DB, Cannot login                    | 
+ hr_manager                        | No inheritance                                             | 
+ medium_dot_com                    | Create DB                                                  | 
+ northwind                         | No inheritance, Create DB                                  | 
+ pagila                            | No inheritance, Create DB                                  | 
+ postgres                          | Superuser, Create role, Create DB, Replication, Bypass RLS | 
+ usda                              | No inheritance, Create DB, Cannot login                    | 
+ www_crunchydata_com               | No inheritance                                             | 
+ www_dot_linkedin_dot_com_learning | Create role, Create DB                                     | 
+ www_dot_postgresql_dot_org        | Create DB                                                  | 
+
+                                                                                 List of functions
+ Schema | Name | Result data type | Argument data types | Type | Volatility | Parallel | Owner | Security | Leakproof? | Access privileges | Language | Internal name | Description 
+--------+------+------------------+---------------------+------+------------+----------+-------+----------+------------+-------------------+----------+---------------+-------------
+(0 rows)
+
+                                                                          List of databases
+            Name            |               Owner               | Encoding | Locale Provider |   Collate   |    Ctype    | Locale | ICU Rules |   Access privileges   
+----------------------------+-----------------------------------+----------+-----------------+-------------+-------------+--------+-----------+-----------------------
+ adventure_works            | adventure_works                   | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL
+ colors                     | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+ fruits                     | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+ kineteco                   | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+ medium_dot_com             | medium_dot_com                    | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+ northwind                  | northwind                         | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL
+ pagila                     | pagila                            | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL
+ postgres                   | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+ template0                  | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +
+                            |                                   |          |                 |             |             |        |           | postgres=CTc/postgres
+ template1                  | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +
+                            |                                   |          |                 |             |             |        |           | postgres=CTc/postgres
+ usda                       | usda                              | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL
+ www_crunchydata_com        | www_crunchydata_com               | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL
+ www_dot_postgresql_dot_org | www_dot_postgresql_dot_org        | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL
+(13 rows)
+
+                                                                                                                          List of databases
+            Name            |               Owner               | Encoding | Locale Provider |   Collate   |    Ctype    | Locale | ICU Rules |   Access privileges   |  Size   |               Tablespace               |                Description                 
+----------------------------+-----------------------------------+----------+-----------------+-------------+-------------+--------+-----------+-----------------------+---------+----------------------------------------+--------------------------------------------
+ adventure_works            | adventure_works                   | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7745 kB | adventure_works_data                   | NULL
+ colors                     | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7841 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ fruits                     | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7857 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ kineteco                   | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 8033 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ medium_dot_com             | medium_dot_com                    | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 42 MB   | medium_dot_com_data                    | NULL
+ northwind                  | northwind                         | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 8982 kB | northwind_data                         | NULL
+ pagila                     | pagila                            | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 12 MB   | pagila_data                            | NULL
+ postgres                   | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | pg_default                             | default administrative connection database
+ template0                  | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7902 kB | pg_default                             | unmodifiable empty database
+                            |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ template1                  | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7801 kB | pg_default                             | default template for new databases
+                            |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ usda                       | usda                              | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7745 kB | usda_data                              | NULL
+ www_crunchydata_com        | www_crunchydata_com               | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7950 kB | www_crunchydata_com_data               | NULL
+ www_dot_postgresql_dot_org | www_dot_postgresql_dot_org        | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7958 kB | www_dot_postgresql_dot_org_data        | NULL
+(13 rows)
+
+/******** QUERY *********/
+CREATE VIEW IF NOT EXISTS pg_temp.first_view AS SELECT first_column FROM pg_temp.first_table
+/************************/
+
+/******** QUERY *********/
+CREATE VIEW pg_temp.first_view AS SELECT first_column FROM pg_temp.first_table
+/************************/
+
+CREATE VIEW
+                                       List of views
+  Schema   |    Name    | Type |        Owner        | Persistence |  Size   | Description 
+-----------+------------+------+---------------------+-------------+---------+-------------
+ pg_temp_4 | first_view | view | www_crunchydata_com | temporary   | 0 bytes | NULL
+(1 row)
+
+                                       List of views
+  Schema   |    Name    | Type |        Owner        | Persistence |  Size   | Description 
+-----------+------------+------+---------------------+-------------+---------+-------------
+ pg_temp_4 | first_view | view | www_crunchydata_com | temporary   | 0 bytes | NULL
+(1 row)
+
+                    List of views
+  Schema   |    Name    | Type |        Owner        
+-----------+------------+------+---------------------
+ pg_temp_4 | first_view | view | www_crunchydata_com
+(1 row)
+
+                           View "pg_temp_4.first_view"
+    Column    |   Type   | Collation | Nullable | Default | Storage | Description 
+--------------+----------+-----------+----------+---------+---------+-------------
+ first_column | smallint |           |          |         | plain   | 
+View definition:
+ SELECT first_column
+   FROM first_table;
+
+                                       List of views
+  Schema   |    Name    | Type |        Owner        | Persistence |  Size   | Description 
+-----------+------------+------+---------------------+-------------+---------+-------------
+ pg_temp_4 | first_view | view | www_crunchydata_com | temporary   | 0 bytes | NULL
+(1 row)
+
+                                       List of views
+  Schema   |    Name    | Type |        Owner        | Persistence |  Size   | Description 
+-----------+------------+------+---------------------+-------------+---------+-------------
+ pg_temp_4 | first_view | view | www_crunchydata_com | temporary   | 0 bytes | NULL
+(1 row)
+
+                                     List of views
+   Schema   |       Name       | Type |  Owner   | Persistence |  Size   | Description 
+------------+------------------+------+----------+-------------+---------+-------------
+ pg_catalog | pg_stat_activity | view | postgres | permanent   | 0 bytes | NULL
+(1 row)
+
+                  List of views
+   Schema   |       Name       | Type |  Owner   
+------------+------------------+------+----------
+ pg_catalog | pg_stat_activity | view | postgres
+(1 row)
+
+                  List of views
+   Schema   |       Name       | Type |  Owner   
+------------+------------------+------+----------
+ pg_catalog | pg_stat_activity | view | postgres
+(1 row)
+
+                                  View "pg_catalog.pg_stat_activity"
+      Column      |           Type           | Collation | Nullable | Default | Storage  | Description 
+------------------+--------------------------+-----------+----------+---------+----------+-------------
+ datid            | oid                      |           |          |         | plain    | 
+ datname          | name                     |           |          |         | plain    | 
+ pid              | integer                  |           |          |         | plain    | 
+ leader_pid       | integer                  |           |          |         | plain    | 
+ usesysid         | oid                      |           |          |         | plain    | 
+ usename          | name                     |           |          |         | plain    | 
+ application_name | text                     |           |          |         | extended | 
+ client_addr      | inet                     |           |          |         | main     | 
+ client_hostname  | text                     |           |          |         | extended | 
+ client_port      | integer                  |           |          |         | plain    | 
+ backend_start    | timestamp with time zone |           |          |         | plain    | 
+ xact_start       | timestamp with time zone |           |          |         | plain    | 
+ query_start      | timestamp with time zone |           |          |         | plain    | 
+ state_change     | timestamp with time zone |           |          |         | plain    | 
+ wait_event_type  | text                     |           |          |         | extended | 
+ wait_event       | text                     |           |          |         | extended | 
+ state            | text                     |           |          |         | extended | 
+ backend_xid      | xid                      |           |          |         | plain    | 
+ backend_xmin     | xid                      |           |          |         | plain    | 
+ query_id         | bigint                   |           |          |         | plain    | 
+ query            | text                     |           |          |         | extended | 
+ backend_type     | text                     |           |          |         | extended | 
+View definition:
+ SELECT s.datid,
+    d.datname,
+    s.pid,
+    s.leader_pid,
+    s.usesysid,
+    u.rolname AS usename,
+    s.application_name,
+    s.client_addr,
+    s.client_hostname,
+    s.client_port,
+    s.backend_start,
+    s.xact_start,
+    s.query_start,
+    s.state_change,
+    s.wait_event_type,
+    s.wait_event,
+    s.state,
+    s.backend_xid,
+    s.backend_xmin,
+    s.query_id,
+    s.query,
+    s.backend_type
+   FROM pg_stat_get_activity(NULL::integer) s(datid, pid, usesysid, application_name, state, query, wait_event_type, wait_event, xact_start, query_start, backend_start, state_change, client_addr, client_hostname, client_port, backend_xid, backend_xmin, backend_type, ssl, sslversion, sslcipher, sslbits, ssl_client_dn, ssl_client_serial, ssl_issuer_dn, gss_auth, gss_princ, gss_enc, gss_delegation, leader_pid, query_id)
+     LEFT JOIN pg_database d ON s.datid = d.oid
+     LEFT JOIN pg_authid u ON s.usesysid = u.oid;
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_stat_activity
+/************************/
+
+ datid |       datname       |  pid  | leader_pid | usesysid |       usename       | application_name | client_addr | client_hostname | client_port |          backend_start           |            xact_start            |           query_start            |           state_change           | wait_event_type | wait_event | state  | backend_xid | backend_xmin |      query_id       |                   query                   |  backend_type  
+-------+---------------------+-------+------------+----------+---------------------+------------------+-------------+-----------------+-------------+----------------------------------+----------------------------------+----------------------------------+----------------------------------+-----------------+------------+--------+-------------+--------------+---------------------+-------------------------------------------+----------------
+     5 | postgres            | 12475 |       NULL |       10 | postgres            | psql             | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+ 49797 | www_crunchydata_com | 13613 |       NULL |    49791 | www_crunchydata_com | psql             | NULL        | NULL            |          -1 | 2025-11-08 12:06:55.687352+05:30 | 2025-11-08 12:51:24.103294+05:30 | 2025-11-08 12:51:24.103294+05:30 | 2025-11-08 12:51:24.103298+05:30 | NULL            | NULL       | active |        NULL |         1107 | 6610283667330434681 | SELECT * FROM pg_catalog.pg_stat_activity | client backend
+  NULL | NULL                | 11840 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11841 |       NULL |       10 | postgres            |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11833 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11834 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11835 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11836 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11837 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+  NULL | NULL                | 11839 |       NULL |     NULL | NULL                |                  | NULL        | NULL            |        NULL | NULL                             | NULL                             | NULL                             | NULL                             | NULL            | NULL       | NULL   |        NULL |         NULL |                NULL | <insufficient privilege>                  | NULL
+(10 rows)
+
+                           View "pg_catalog.pg_stat_database"
+           Column           |           Type           | Collation | Nullable | Default 
+----------------------------+--------------------------+-----------+----------+---------
+ datid                      | oid                      |           |          | 
+ datname                    | name                     |           |          | 
+ numbackends                | integer                  |           |          | 
+ xact_commit                | bigint                   |           |          | 
+ xact_rollback              | bigint                   |           |          | 
+ blks_read                  | bigint                   |           |          | 
+ blks_hit                   | bigint                   |           |          | 
+ tup_returned               | bigint                   |           |          | 
+ tup_fetched                | bigint                   |           |          | 
+ tup_inserted               | bigint                   |           |          | 
+ tup_updated                | bigint                   |           |          | 
+ tup_deleted                | bigint                   |           |          | 
+ conflicts                  | bigint                   |           |          | 
+ temp_files                 | bigint                   |           |          | 
+ temp_bytes                 | bigint                   |           |          | 
+ deadlocks                  | bigint                   |           |          | 
+ checksum_failures          | bigint                   |           |          | 
+ checksum_last_failure      | timestamp with time zone |           |          | 
+ blk_read_time              | double precision         |           |          | 
+ blk_write_time             | double precision         |           |          | 
+ session_time               | double precision         |           |          | 
+ active_time                | double precision         |           |          | 
+ idle_in_transaction_time   | double precision         |           |          | 
+ sessions                   | bigint                   |           |          | 
+ sessions_abandoned         | bigint                   |           |          | 
+ sessions_fatal             | bigint                   |           |          | 
+ sessions_killed            | bigint                   |           |          | 
+ parallel_workers_to_launch | bigint                   |           |          | 
+ parallel_workers_launched  | bigint                   |           |          | 
+ stats_reset                | timestamp with time zone |           |          | 
+

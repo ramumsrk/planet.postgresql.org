@@ -1,0 +1,1 @@
+The contents of this _folder_ or _namespace_ should be executed _first_
