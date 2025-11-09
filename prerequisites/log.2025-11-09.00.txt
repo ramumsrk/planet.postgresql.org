@@ -1,0 +1,42 @@
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS pgpedia_info AUTHORIZATION pgpedia_info
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'pgpedia_info'
+/************************/
+
+            Column            |         Type         
+------------------------------+----------------------
+ table_catalog                | name
+ table_schema                 | name
+ table_name                   | name
+ table_type                   | character varying
+ self_referencing_column_name | name
+ reference_generation         | character varying
+ user_defined_type_catalog    | name
+ user_defined_type_schema     | name
+ user_defined_type_name       | name
+ is_insertable_into           | character varying(3)
+ is_typed                     | character varying(3)
+ commit_action                | character varying
+(12 rows)
+
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'pgpedia_info'
+/************************/
+
+ table_catalog | table_schema | table_name | table_type | self_referencing_column_name | reference_generation | user_defined_type_catalog | user_defined_type_schema | user_defined_type_name | is_insertable_into | is_typed | commit_action 
+---------------+--------------+------------+------------+------------------------------+----------------------+---------------------------+--------------------------+------------------------+--------------------+----------+---------------
+(0 rows)
+
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+     user     | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+--------------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ pgpedia_info | pgpedia_info | pgpedia_info | pgpedia_info | pgpedia_info   | 2025-11-09   | 12:15:06.392892+05:30 | 2025-11-09 12:15:06.392892+05:30
+(1 row)
+

@@ -1,0 +1,101 @@
+CREATE ROLE
+-[ RECORD 1 ]--+-------------
+rolname        | pgpedia_info
+rolsuper       | f
+rolinherit     | t
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolconnlimit   | -1
+rolpassword    | ********
+rolvaliduntil  | NULL
+rolbypassrls   | f
+rolconfig      | NULL
+oid            | 49813
+
+-[ RECORD 1 ]--+--------------------------------------------------------------------------------------------------------------------------------------
+oid            | 49813
+rolname        | pgpedia_info
+rolsuper       | f
+rolinherit     | t
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolbypassrls   | f
+rolconnlimit   | -1
+rolpassword    | SCRAM-SHA-256$4096:xjD8flAzJjNChtkPFL64tA==$pqjAhd2zv9oAiYXE0mFE0MxR4Mx2OosLflxDSIF40z8=:Eebq8Ygfm+pQ2WHkF7n3euaWGPxwZVD5F4T9AAChC14=
+rolvaliduntil  | NULL
+
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE TABLESPACE
+-[ RECORD 1 ]------------------
+oid        | 49816
+spcname    | pgpedia_info_data
+spcowner   | 49813
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 2 ]------------------
+oid        | 49817
+spcname    | pgpedia_info_index
+spcowner   | 49813
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 3 ]------------------
+oid        | 49818
+spcname    | pgpedia_info_temp
+spcowner   | 49813
+spcacl     | NULL
+spcoptions | NULL
+
+CREATE DATABASE
+-[ RECORD 1 ]--+-------------
+oid            | 49819
+datname        | pgpedia_info
+datdba         | 49813
+encoding       | 6
+datlocprovider | c
+datistemplate  | f
+datallowconn   | t
+dathasloginevt | f
+datconnlimit   | -1
+datfrozenxid   | 744
+datminmxid     | 1
+dattablespace  | 49816
+datcollate     | en_US.UTF-8
+datctype       | en_US.UTF-8
+datlocale      | NULL
+daticurules    | NULL
+datcollversion | 2.42
+datacl         | NULL
+
+-[ RECORD 1 ]-----+--------------------------------
+user              | postgres
+current_user      | postgres
+session_user      | postgres
+current_role      | postgres
+current_schema    | public
+current_date      | 2025-11-09
+current_time      | 12:07:07.34558+05:30
+current_timestamp | 2025-11-09 12:07:07.34558+05:30
+
+            Column            |         Type         
+------------------------------+----------------------
+ table_catalog                | name
+ table_schema                 | name
+ table_name                   | name
+ table_type                   | character varying
+ self_referencing_column_name | name
+ reference_generation         | character varying
+ user_defined_type_catalog    | name
+ user_defined_type_schema     | name
+ user_defined_type_name       | name
+ is_insertable_into           | character varying(3)
+ is_typed                     | character varying(3)
+ commit_action                | character varying
+(12 rows)
+
+(0 rows)
+

@@ -1,0 +1,129 @@
+/******** QUERY *********/
+CREATE ROLE pgpedia_info
+WITH
+LOGIN
+NOCREATEDB
+NOSUPERUSER
+NOCREATEROLE
+NOREPLICATION
+NOBYPASSRLS
+IN ROLE pg_read_server_files, pg_read_all_settings
+PASSWORD 'pgpedia_info'
+CONNECTION LIMIT -1
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'pgpedia_info'
+/************************/
+
+   rolname    | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword | rolvaliduntil | rolbypassrls | rolconfig |  oid  
+--------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------+--------------+-----------+-------
+ pgpedia_info | f        | t          | f             | f           | t           | f              |           -1 | ********    | NULL          | f            | NULL      | 49813
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'pgpedia_info'
+/************************/
+
+  oid  |   rolname    | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit |                                                              rolpassword                                                              | rolvaliduntil 
+-------+--------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------
+ 49813 | pgpedia_info | f        | t          | f             | f           | t           | f              | f            |           -1 | SCRAM-SHA-256$4096:xjD8flAzJjNChtkPFL64tA==$pqjAhd2zv9oAiYXE0mFE0MxR4Mx2OosLflxDSIF40z8=:Eebq8Ygfm+pQ2WHkF7n3euaWGPxwZVD5F4T9AAChC14= | NULL
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLESPACE pgpedia_info_data
+OWNER pgpedia_info
+LOCATION '/var/lib/pgsql/18/pgpedia_info_data'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE pgpedia_info_index
+OWNER pgpedia_info
+LOCATION '/var/lib/pgsql/18/pgpedia_info_index'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE pgpedia_info_temp
+OWNER pgpedia_info
+LOCATION '/var/lib/pgsql/18/pgpedia_info_temp'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'pgpedia_info_%'
+/************************/
+
+  oid  |      spcname       | spcowner | spcacl | spcoptions 
+-------+--------------------+----------+--------+------------
+ 49816 | pgpedia_info_data  |    49813 | NULL   | NULL
+ 49817 | pgpedia_info_index |    49813 | NULL   | NULL
+ 49818 | pgpedia_info_temp  |    49813 | NULL   | NULL
+(3 rows)
+
+/******** QUERY *********/
+CREATE DATABASE pgpedia_info
+WITH
+OWNER = pgpedia_info
+TABLESPACE = pgpedia_info_data
+IS_TEMPLATE = false
+ALLOW_CONNECTIONS = true
+CONNECTION LIMIT -1
+LOCALE = 'en_US.UTF-8'
+ENCODING = 'UTF8'
+TEMPLATE = template0
+/************************/
+
+CREATE DATABASE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'pgpedia_info'
+/************************/
+
+  oid  |   datname    | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate  |  datctype   | datlocale | daticurules | datcollversion | datacl 
+-------+--------------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+-------------+-------------+-----------+-------------+----------------+--------
+ 49819 | pgpedia_info |  49813 |        6 | c              | f             | t            | f              |           -1 |          744 |          1 |         49816 | en_US.UTF-8 | en_US.UTF-8 | NULL      | NULL        | 2.42           | NULL
+(1 row)
+
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+   user   | current_user | session_user | current_role | current_schema | current_date |     current_time     |        current_timestamp        
+----------+--------------+--------------+--------------+----------------+--------------+----------------------+---------------------------------
+ postgres | postgres     | postgres     | postgres     | public         | 2025-11-09   | 12:07:07.34558+05:30 | 2025-11-09 12:07:07.34558+05:30
+(1 row)
+
+/******** QUERY *********/
+CREATE ROLE IF NOT EXISTS pgpedia_info AUTHORIZATION pgpedia_info
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'pgpedia_info'
+/************************/
+
+            Column            |         Type         
+------------------------------+----------------------
+ table_catalog                | name
+ table_schema                 | name
+ table_name                   | name
+ table_type                   | character varying
+ self_referencing_column_name | name
+ reference_generation         | character varying
+ user_defined_type_catalog    | name
+ user_defined_type_schema     | name
+ user_defined_type_name       | name
+ is_insertable_into           | character varying(3)
+ is_typed                     | character varying(3)
+ commit_action                | character varying
+(12 rows)
+
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'pgpedia_info'
+/************************/
+
+ table_catalog | table_schema | table_name | table_type | self_referencing_column_name | reference_generation | user_defined_type_catalog | user_defined_type_schema | user_defined_type_name | is_insertable_into | is_typed | commit_action 
+---------------+--------------+------------+------------+------------------------------+----------------------+---------------------------+--------------------------+------------------------+--------------------+----------+---------------
+(0 rows)
+

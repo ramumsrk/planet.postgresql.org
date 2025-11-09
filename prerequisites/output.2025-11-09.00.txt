@@ -1,0 +1,29 @@
+CREATE SCHEMA
+            Column            |         Type         
+------------------------------+----------------------
+ table_catalog                | name
+ table_schema                 | name
+ table_name                   | name
+ table_type                   | character varying
+ self_referencing_column_name | name
+ reference_generation         | character varying
+ user_defined_type_catalog    | name
+ user_defined_type_schema     | name
+ user_defined_type_name       | name
+ is_insertable_into           | character varying(3)
+ is_typed                     | character varying(3)
+ commit_action                | character varying
+(12 rows)
+
+(0 rows)
+
+-[ RECORD 1 ]-----+---------------------------------
+user              | pgpedia_info
+current_user      | pgpedia_info
+session_user      | pgpedia_info
+current_role      | pgpedia_info
+current_schema    | pgpedia_info
+current_date      | 2025-11-09
+current_time      | 12:15:06.392892+05:30
+current_timestamp | 2025-11-09 12:15:06.392892+05:30
+
