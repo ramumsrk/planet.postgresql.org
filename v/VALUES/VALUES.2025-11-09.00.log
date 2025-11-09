@@ -1,0 +1,71 @@
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CUURENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+     user     | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+--------------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ pgpedia_info | pgpedia_info | pgpedia_info | pgpedia_info | pgpedia_info   | 2025-11-09   | 15:59:49.920119+05:30 | 2025-11-09 15:59:49.920119+05:30
+(1 row)
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE true, TIMING true, SETTINGS true, VERBOSE true, BUFFERS true, MEMORY true, COSTS true, FORMAT TEXT) VALUES (1::smallint, 'one'::text), (2::smallint, 'two'::text), (3::smallint, 'three'::text)
+/************************/
+
+                                                QUERY PLAN                                                 
+-----------------------------------------------------------------------------------------------------------
+ Values Scan on "*VALUES*"  (cost=0.00..0.04 rows=3 width=34) (actual time=0.003..0.006 rows=3.00 loops=1)
+   Output: column1, column2
+ Query Identifier: 7397720599505817445
+ Planning:
+   Memory: used=7kB  allocated=8kB
+ Planning Time: 0.215 ms
+ Execution Time: 0.116 ms
+(7 rows)
+
+/******** QUERY *********/
+VALUES (1::smallint, 'one'::text), (2::smallint, 'two'::text), (3::smallint, 'three'::text)
+/************************/
+
+ column1 | column2 
+---------+---------
+       1 | one
+       2 | two
+       3 | three
+(3 rows)
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE true, TIMING true, SETTINGS true, VERBOSE true, BUFFERS true, MEMORY true, COSTS true, FORMAT TEXT) VALUES (1::smallint, 'one'::text), (2::smallint, 'two'::text), (3::smallint, 'three'::text) ORDER BY 2 DESC
+/************************/
+
+                                                   QUERY PLAN                                                    
+-----------------------------------------------------------------------------------------------------------------
+ Sort  (cost=0.06..0.07 rows=3 width=34) (actual time=0.500..0.502 rows=3.00 loops=1)
+   Output: column1, column2
+   Sort Key: "*VALUES*".column2 DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=3
+   ->  Values Scan on "*VALUES*"  (cost=0.00..0.04 rows=3 width=34) (actual time=0.006..0.009 rows=3.00 loops=1)
+         Output: column1, column2
+ Query Identifier: -2562283753355890672
+ Planning:
+   Buffers: shared hit=7 read=10
+   Memory: used=10kB  allocated=16kB
+ Planning Time: 78.644 ms
+ Execution Time: 0.557 ms
+(13 rows)
+
+/******** QUERY *********/
+VALUES (1::smallint, 'one'::text), (2::smallint, 'two'::text), (3::smallint, 'three'::text) ORDER BY 2 DESC
+/************************/
+
+ column1 | column2 
+---------+---------
+       2 | two
+       3 | three
+       1 | one
+(3 rows)
+
