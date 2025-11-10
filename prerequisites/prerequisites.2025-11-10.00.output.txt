@@ -1,0 +1,76 @@
+CREATE ROLE
+-[ RECORD 1 ]--+----------------------------
+oid            | 58024
+rolname        | www_cybertec_postgresql_com
+rolsuper       | f
+rolinherit     | f
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolbypassrls   | f
+rolconnlimit   | -1
+rolpassword    | NULL
+rolvaliduntil  | NULL
+
+-[ RECORD 1 ]--+----------------------------
+rolname        | www_cybertec_postgresql_com
+rolsuper       | f
+rolinherit     | f
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolconnlimit   | -1
+rolpassword    | ********
+rolvaliduntil  | NULL
+rolbypassrls   | f
+rolconfig      | NULL
+oid            | 58024
+
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE TABLESPACE
+-[ RECORD 1 ]---------------------------------
+oid        | 58027
+spcname    | www_cybertec_postgresql_com_data
+spcowner   | 58024
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 2 ]---------------------------------
+oid        | 58028
+spcname    | www_cybertec_postgresql_com_index
+spcowner   | 58024
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 3 ]---------------------------------
+oid        | 58029
+spcname    | www_cybertec_postgresql_com_temp
+spcowner   | 58024
+spcacl     | NULL
+spcoptions | NULL
+
+CREATE DATABASE
+-[ RECORD 1 ]--+----------------------------
+oid            | 58030
+datname        | www_cybertec_postgresql_com
+datdba         | 58024
+encoding       | 6
+datlocprovider | c
+datistemplate  | f
+datallowconn   | t
+dathasloginevt | f
+datconnlimit   | -1
+datfrozenxid   | 744
+datminmxid     | 1
+dattablespace  | 58027
+datcollate     | en_US.UTF-8
+datctype       | en_US.UTF-8
+datlocale      | NULL
+daticurules    | NULL
+datcollversion | 2.42
+datacl         | NULL
+
+CREATE SCHEMA
+(0 rows)
+

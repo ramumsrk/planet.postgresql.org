@@ -1,0 +1,100 @@
+/******** QUERY *********/
+CREATE ROLE www_cybertec_postgresql_com
+WITH
+LOGIN
+NOINHERIT
+NOSUPERUSER
+NOCREATEDB
+NOREPLICATION
+NOBYPASSRLS
+IN ROLE pg_read_all_settings, pg_read_server_files
+CONNECTION LIMIT -1
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_cybertec_postgresql_com'
+/************************/
+
+  oid  |           rolname           | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit | rolpassword | rolvaliduntil 
+-------+-----------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+-------------+---------------
+ 58024 | www_cybertec_postgresql_com | f        | f          | f             | f           | t           | f              | f            |           -1 | NULL        | NULL
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_cybertec_postgresql_com'
+/************************/
+
+           rolname           | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword | rolvaliduntil | rolbypassrls | rolconfig |  oid  
+-----------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------+--------------+-----------+-------
+ www_cybertec_postgresql_com | f        | f          | f             | f           | t           | f              |           -1 | ********    | NULL          | f            | NULL      | 58024
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLESPACE www_cybertec_postgresql_com_data
+OWNER www_cybertec_postgresql_com
+LOCATION '/var/lib/pgsql/18/www_cybertec_postgresql_com_data/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE www_cybertec_postgresql_com_index
+OWNER www_cybertec_postgresql_com
+LOCATION '/var/lib/pgsql/18/www_cybertec_postgresql_com_index/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE www_cybertec_postgresql_com_temp
+OWNER www_cybertec_postgresql_com
+LOCATION '/var/lib/pgsql/18/www_cybertec_postgresql_com_temp/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'www_cybertec_postgresql_com_%'
+/************************/
+
+  oid  |              spcname              | spcowner | spcacl | spcoptions 
+-------+-----------------------------------+----------+--------+------------
+ 58027 | www_cybertec_postgresql_com_data  |    58024 | NULL   | NULL
+ 58028 | www_cybertec_postgresql_com_index |    58024 | NULL   | NULL
+ 58029 | www_cybertec_postgresql_com_temp  |    58024 | NULL   | NULL
+(3 rows)
+
+/******** QUERY *********/
+CREATE DATABASE www_cybertec_postgresql_com
+WITH
+OWNER = www_cybertec_postgresql_com
+TABLESPACE = www_cybertec_postgresql_com_data
+IS_TEMPLATE = false
+ALLOW_CONNECTIONS = true
+LOCALE = 'en_US.UTF-8'
+ENCODING = 'UTF8'
+TEMPLATE = template0
+CONNECTION LIMIT -1
+/************************/
+
+CREATE DATABASE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'www_cybertec_postgresql_com'
+/************************/
+
+  oid  |           datname           | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate  |  datctype   | datlocale | daticurules | datcollversion | datacl 
+-------+-----------------------------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+-------------+-------------+-----------+-------------+----------------+--------
+ 58030 | www_cybertec_postgresql_com |  58024 |        6 | c              | f             | t            | f              |           -1 |          744 |          1 |         58027 | en_US.UTF-8 | en_US.UTF-8 | NULL      | NULL        | 2.42           | NULL
+(1 row)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS www_cybertec_postgresql_com AUTHORIZATION www_cybertec_postgresql_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'www_cybertec_postgresql_com'
+/************************/
+
+ table_catalog | table_schema | table_name | table_type | self_referencing_column_name | reference_generation | user_defined_type_catalog | user_defined_type_schema | user_defined_type_name | is_insertable_into | is_typed | commit_action 
+---------------+--------------+------------+------------+------------------------------+----------------------+---------------------------+--------------------------+------------------------+--------------------+----------+---------------
+(0 rows)
+
