@@ -1,0 +1,212 @@
+/******** QUERY *********/
+CREATE ROLE databaserookies_wordpress_com
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOBYPASSRLS
+NOREPLICATION
+NOINHERIT
+PASSWORD NULL
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+IN ROLE pg_read_server_files, pg_read_all_settings
+CONNECTION LIMIT -1
+/************************/
+
+CREATE ROLE
+                                        List of tables
+   Schema   |   Name    | Type  |  Owner   | Persistence | Access method | Size  | Description 
+------------+-----------+-------+----------+-------------+---------------+-------+-------------
+ pg_catalog | pg_authid | table | postgres | permanent   | heap          | 40 kB | NULL
+(1 row)
+
+                                                   Table "pg_catalog.pg_authid"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid                      |           | not null |         | plain    |             |              | 
+ rolname        | name                     |           | not null |         | plain    |             |              | 
+ rolsuper       | boolean                  |           | not null |         | plain    |             |              | 
+ rolinherit     | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreaterole  | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreatedb    | boolean                  |           | not null |         | plain    |             |              | 
+ rolcanlogin    | boolean                  |           | not null |         | plain    |             |              | 
+ rolreplication | boolean                  |           | not null |         | plain    |             |              | 
+ rolbypassrls   | boolean                  |           | not null |         | plain    |             |              | 
+ rolconnlimit   | integer                  |           | not null |         | plain    |             |              | 
+ rolpassword    | text                     | C         |          |         | extended |             |              | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    |             |              | 
+Indexes:
+    "pg_authid_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_authid_rolname_index" UNIQUE CONSTRAINT, btree (rolname), tablespace "pg_global"
+Not-null constraints:
+    "pg_authid_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'databaserookies_wordpress_com'
+/************************/
+
+  oid  |            rolname            | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit | rolpassword |       rolvaliduntil       
+-------+-------------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+-------------+---------------------------
+ 58090 | databaserookies_wordpress_com | f        | f          | f             | f           | t           | f              | f            |           -1 | NULL        | 2025-12-31 23:59:59+05:30
+(1 row)
+
+                                     View "pg_catalog.pg_roles"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------
+ rolname        | name                     |           |          |         | plain    | 
+ rolsuper       | boolean                  |           |          |         | plain    | 
+ rolinherit     | boolean                  |           |          |         | plain    | 
+ rolcreaterole  | boolean                  |           |          |         | plain    | 
+ rolcreatedb    | boolean                  |           |          |         | plain    | 
+ rolcanlogin    | boolean                  |           |          |         | plain    | 
+ rolreplication | boolean                  |           |          |         | plain    | 
+ rolconnlimit   | integer                  |           |          |         | plain    | 
+ rolpassword    | text                     |           |          |         | extended | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    | 
+ rolbypassrls   | boolean                  |           |          |         | plain    | 
+ rolconfig      | text[]                   | C         |          |         | extended | 
+ oid            | oid                      |           |          |         | plain    | 
+View definition:
+ SELECT pg_authid.rolname,
+    pg_authid.rolsuper,
+    pg_authid.rolinherit,
+    pg_authid.rolcreaterole,
+    pg_authid.rolcreatedb,
+    pg_authid.rolcanlogin,
+    pg_authid.rolreplication,
+    pg_authid.rolconnlimit,
+    '********'::text AS rolpassword,
+    pg_authid.rolvaliduntil,
+    pg_authid.rolbypassrls,
+    s.setconfig AS rolconfig,
+    pg_authid.oid
+   FROM pg_authid
+     LEFT JOIN pg_db_role_setting s ON pg_authid.oid = s.setrole AND s.setdatabase = 0::oid;
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'databaserookies_wordpress_com'
+/************************/
+
+            rolname            | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword |       rolvaliduntil       | rolbypassrls | rolconfig |  oid  
+-------------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------------------+--------------+-----------+-------
+ databaserookies_wordpress_com | f        | f          | f             | f           | t           | f              |           -1 | ********    | 2025-12-31 23:59:59+05:30 | f            | NULL      | 58090
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLESPACE databaserookies_wordpress_com_data
+OWNER databaserookies_wordpress_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/databaserookies_wordpress_com_data/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE databaserookies_wordpress_com_index
+OWNER databaserookies_wordpress_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/databaserookies_wordpress_com_index/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE databaserookies_wordpress_com_temp
+OWNER databaserookies_wordpress_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/databaserookies_wordpress_com_temp/'
+/************************/
+
+CREATE TABLESPACE
+                                       Table "pg_catalog.pg_tablespace"
+   Column   |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid        | oid       |           | not null |         | plain    |             |              | 
+ spcname    | name      |           | not null |         | plain    |             |              | 
+ spcowner   | oid       |           | not null |         | plain    |             |              | 
+ spcacl     | aclitem[] |           |          |         | extended |             |              | 
+ spcoptions | text[]    | C         |          |         | extended |             |              | 
+Indexes:
+    "pg_tablespace_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_tablespace_spcname_index" UNIQUE CONSTRAINT, btree (spcname), tablespace "pg_global"
+Not-null constraints:
+    "pg_tablespace_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'databaserookies_wordpress_com_%'
+/************************/
+
+  oid  |               spcname               | spcowner | spcacl | spcoptions 
+-------+-------------------------------------+----------+--------+------------
+ 58093 | databaserookies_wordpress_com_data  |    58090 | NULL   | NULL
+ 58094 | databaserookies_wordpress_com_index |    58090 | NULL   | NULL
+ 58095 | databaserookies_wordpress_com_temp  |    58090 | NULL   | NULL
+(3 rows)
+
+/******** QUERY *********/
+CREATE DATABASE databaserookies_wordpress_com
+WITH
+OWNER = databaserookies_wordpress_com
+TABLESPACE = databaserookies_wordpress_com_data
+IS_TEMPLATE = false
+ALLOW_CONNECTIONS = true
+TEMPLATE = template0
+ENCODING = 'UTF8'
+LOCALE = 'en_US.UTF-8'
+CONNECTION LIMIT -1
+/************************/
+
+CREATE DATABASE
+                                         List of tables
+   Schema   |    Name     | Type  |  Owner   | Persistence | Access method | Size  | Description 
+------------+-------------+-------+----------+-------------+---------------+-------+-------------
+ pg_catalog | pg_database | table | postgres | permanent   | heap          | 48 kB | NULL
+(1 row)
+
+                                          Table "pg_catalog.pg_database"
+     Column     |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid       |           | not null |         | plain    |             |              | 
+ datname        | name      |           | not null |         | plain    |             |              | 
+ datdba         | oid       |           | not null |         | plain    |             |              | 
+ encoding       | integer   |           | not null |         | plain    |             |              | 
+ datlocprovider | "char"    |           | not null |         | plain    |             |              | 
+ datistemplate  | boolean   |           | not null |         | plain    |             |              | 
+ datallowconn   | boolean   |           | not null |         | plain    |             |              | 
+ dathasloginevt | boolean   |           | not null |         | plain    |             |              | 
+ datconnlimit   | integer   |           | not null |         | plain    |             |              | 
+ datfrozenxid   | xid       |           | not null |         | plain    |             |              | 
+ datminmxid     | xid       |           | not null |         | plain    |             |              | 
+ dattablespace  | oid       |           | not null |         | plain    |             |              | 
+ datcollate     | text      | C         | not null |         | extended |             |              | 
+ datctype       | text      | C         | not null |         | extended |             |              | 
+ datlocale      | text      | C         |          |         | extended |             |              | 
+ daticurules    | text      | C         |          |         | extended |             |              | 
+ datcollversion | text      | C         |          |         | extended |             |              | 
+ datacl         | aclitem[] |           |          |         | extended |             |              | 
+Indexes:
+    "pg_database_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_database_datname_index" UNIQUE CONSTRAINT, btree (datname), tablespace "pg_global"
+Not-null constraints:
+    "pg_database_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'databaserookies_wordpress_com'
+/************************/
+
+  oid  |            datname            | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate  |  datctype   | datlocale | daticurules | datcollversion | datacl 
+-------+-------------------------------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+-------------+-------------+-----------+-------------+----------------+--------
+ 58096 | databaserookies_wordpress_com |  58090 |        6 | c              | f             | t            | f              |           -1 |          744 |          1 |         58093 | en_US.UTF-8 | en_US.UTF-8 | NULL      | NULL        | 2.42           | NULL
+(1 row)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS databaserookies_wordpress_com AUTHORIZATION databaserookies_wordpress_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS Deepak_Mahto AUTHORIZATION databaserookies_wordpress_com
+/************************/
+
+CREATE SCHEMA

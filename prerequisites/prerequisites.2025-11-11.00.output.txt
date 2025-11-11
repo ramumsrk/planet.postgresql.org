@@ -1,0 +1,198 @@
+CREATE ROLE
+List of tables
+-[ RECORD 1 ]-+-----------
+Schema        | pg_catalog
+Name          | pg_authid
+Type          | table
+Owner         | postgres
+Persistence   | permanent
+Access method | heap
+Size          | 40 kB
+Description   | NULL
+
+                                                   Table "pg_catalog.pg_authid"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid                      |           | not null |         | plain    |             |              | 
+ rolname        | name                     |           | not null |         | plain    |             |              | 
+ rolsuper       | boolean                  |           | not null |         | plain    |             |              | 
+ rolinherit     | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreaterole  | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreatedb    | boolean                  |           | not null |         | plain    |             |              | 
+ rolcanlogin    | boolean                  |           | not null |         | plain    |             |              | 
+ rolreplication | boolean                  |           | not null |         | plain    |             |              | 
+ rolbypassrls   | boolean                  |           | not null |         | plain    |             |              | 
+ rolconnlimit   | integer                  |           | not null |         | plain    |             |              | 
+ rolpassword    | text                     | C         |          |         | extended |             |              | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    |             |              | 
+Indexes:
+    "pg_authid_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_authid_rolname_index" UNIQUE CONSTRAINT, btree (rolname), tablespace "pg_global"
+Not-null constraints:
+    "pg_authid_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+-[ RECORD 1 ]--+------------------------------
+oid            | 58090
+rolname        | databaserookies_wordpress_com
+rolsuper       | f
+rolinherit     | f
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolbypassrls   | f
+rolconnlimit   | -1
+rolpassword    | NULL
+rolvaliduntil  | 2025-12-31 23:59:59+05:30
+
+                                     View "pg_catalog.pg_roles"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------
+ rolname        | name                     |           |          |         | plain    | 
+ rolsuper       | boolean                  |           |          |         | plain    | 
+ rolinherit     | boolean                  |           |          |         | plain    | 
+ rolcreaterole  | boolean                  |           |          |         | plain    | 
+ rolcreatedb    | boolean                  |           |          |         | plain    | 
+ rolcanlogin    | boolean                  |           |          |         | plain    | 
+ rolreplication | boolean                  |           |          |         | plain    | 
+ rolconnlimit   | integer                  |           |          |         | plain    | 
+ rolpassword    | text                     |           |          |         | extended | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    | 
+ rolbypassrls   | boolean                  |           |          |         | plain    | 
+ rolconfig      | text[]                   | C         |          |         | extended | 
+ oid            | oid                      |           |          |         | plain    | 
+View definition:
+ SELECT pg_authid.rolname,
+    pg_authid.rolsuper,
+    pg_authid.rolinherit,
+    pg_authid.rolcreaterole,
+    pg_authid.rolcreatedb,
+    pg_authid.rolcanlogin,
+    pg_authid.rolreplication,
+    pg_authid.rolconnlimit,
+    '********'::text AS rolpassword,
+    pg_authid.rolvaliduntil,
+    pg_authid.rolbypassrls,
+    s.setconfig AS rolconfig,
+    pg_authid.oid
+   FROM pg_authid
+     LEFT JOIN pg_db_role_setting s ON pg_authid.oid = s.setrole AND s.setdatabase = 0::oid;
+
+-[ RECORD 1 ]--+------------------------------
+rolname        | databaserookies_wordpress_com
+rolsuper       | f
+rolinherit     | f
+rolcreaterole  | f
+rolcreatedb    | f
+rolcanlogin    | t
+rolreplication | f
+rolconnlimit   | -1
+rolpassword    | ********
+rolvaliduntil  | 2025-12-31 23:59:59+05:30
+rolbypassrls   | f
+rolconfig      | NULL
+oid            | 58090
+
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE TABLESPACE
+                                       Table "pg_catalog.pg_tablespace"
+   Column   |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid        | oid       |           | not null |         | plain    |             |              | 
+ spcname    | name      |           | not null |         | plain    |             |              | 
+ spcowner   | oid       |           | not null |         | plain    |             |              | 
+ spcacl     | aclitem[] |           |          |         | extended |             |              | 
+ spcoptions | text[]    | C         |          |         | extended |             |              | 
+Indexes:
+    "pg_tablespace_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_tablespace_spcname_index" UNIQUE CONSTRAINT, btree (spcname), tablespace "pg_global"
+Not-null constraints:
+    "pg_tablespace_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+-[ RECORD 1 ]-----------------------------------
+oid        | 58093
+spcname    | databaserookies_wordpress_com_data
+spcowner   | 58090
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 2 ]-----------------------------------
+oid        | 58094
+spcname    | databaserookies_wordpress_com_index
+spcowner   | 58090
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 3 ]-----------------------------------
+oid        | 58095
+spcname    | databaserookies_wordpress_com_temp
+spcowner   | 58090
+spcacl     | NULL
+spcoptions | NULL
+
+CREATE DATABASE
+List of tables
+-[ RECORD 1 ]-+------------
+Schema        | pg_catalog
+Name          | pg_database
+Type          | table
+Owner         | postgres
+Persistence   | permanent
+Access method | heap
+Size          | 48 kB
+Description   | NULL
+
+                                          Table "pg_catalog.pg_database"
+     Column     |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid       |           | not null |         | plain    |             |              | 
+ datname        | name      |           | not null |         | plain    |             |              | 
+ datdba         | oid       |           | not null |         | plain    |             |              | 
+ encoding       | integer   |           | not null |         | plain    |             |              | 
+ datlocprovider | "char"    |           | not null |         | plain    |             |              | 
+ datistemplate  | boolean   |           | not null |         | plain    |             |              | 
+ datallowconn   | boolean   |           | not null |         | plain    |             |              | 
+ dathasloginevt | boolean   |           | not null |         | plain    |             |              | 
+ datconnlimit   | integer   |           | not null |         | plain    |             |              | 
+ datfrozenxid   | xid       |           | not null |         | plain    |             |              | 
+ datminmxid     | xid       |           | not null |         | plain    |             |              | 
+ dattablespace  | oid       |           | not null |         | plain    |             |              | 
+ datcollate     | text      | C         | not null |         | extended |             |              | 
+ datctype       | text      | C         | not null |         | extended |             |              | 
+ datlocale      | text      | C         |          |         | extended |             |              | 
+ daticurules    | text      | C         |          |         | extended |             |              | 
+ datcollversion | text      | C         |          |         | extended |             |              | 
+ datacl         | aclitem[] |           |          |         | extended |             |              | 
+Indexes:
+    "pg_database_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_database_datname_index" UNIQUE CONSTRAINT, btree (datname), tablespace "pg_global"
+Not-null constraints:
+    "pg_database_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+-[ RECORD 1 ]--+------------------------------
+oid            | 58096
+datname        | databaserookies_wordpress_com
+datdba         | 58090
+encoding       | 6
+datlocprovider | c
+datistemplate  | f
+datallowconn   | t
+dathasloginevt | f
+datconnlimit   | -1
+datfrozenxid   | 744
+datminmxid     | 1
+dattablespace  | 58093
+datcollate     | en_US.UTF-8
+datctype       | en_US.UTF-8
+datlocale      | NULL
+daticurules    | NULL
+datcollversion | 2.42
+datacl         | NULL
+
+CREATE SCHEMA
+CREATE SCHEMA
