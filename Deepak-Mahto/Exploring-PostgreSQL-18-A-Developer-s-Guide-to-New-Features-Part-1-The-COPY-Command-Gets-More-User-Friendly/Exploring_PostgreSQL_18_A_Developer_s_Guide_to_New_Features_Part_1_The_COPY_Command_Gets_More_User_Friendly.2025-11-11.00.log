@@ -1,0 +1,206 @@
+/******** QUERY *********/
+SELECT USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+             user              |         current_user          |         session_user          |         current_role          |        current_schema         | current_date |     current_time      |        current_timestamp         
+-------------------------------+-------------------------------+-------------------------------+-------------------------------+-------------------------------+--------------+-----------------------+----------------------------------
+ databaserookies_wordpress_com | databaserookies_wordpress_com | databaserookies_wordpress_com | databaserookies_wordpress_com | databaserookies_wordpress_com | 2025-11-11   | 11:09:21.373183+05:30 | 2025-11-11 11:09:21.373183+05:30
+(1 row)
+
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+ temp_tablespaces 
+------------------
+ 
+(1 row)
+
+/******** QUERY *********/
+SET SESSION temp_tablespaces TO 'databaserookies_wordpress_com_temp'
+/************************/
+
+SET
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+          temp_tablespaces          
+------------------------------------
+ databaserookies_wordpress_com_temp
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS Deepak_Mahto.copy18
+(
+    first_column INT4,
+    second_column TEXT DEFAULT 'x'::text,
+    third_column TEXT CONSTRAINT nn_copy18_third_column NOT NULL,
+    fourth_column TEXT,
+    fifth_column BOOLEAN,
+    sixth_column DATE,
+    seventh_column TIMESTAMP WITHOUT TIME ZONE,
+    -- Table constraint
+    CONSTRAINT chk_copy18_fourth_column CHECK (LENGTH(fourth_column) > 2)
+)
+TABLESPACE databaserookies_wordpress_com_data
+/************************/
+
+CREATE TABLE
+/******** QUERY *********/
+COPY Deepak_Mahto.copy18
+(
+    first_column,
+    second_column,
+    third_column,
+    fourth_column,
+    fifth_column,
+    sixth_column,
+    seventh_column
+)
+FROM '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/databaserookies_wordpress_com/copy18_data.csv'
+WITH
+(
+    FORMAT csv,
+    ENCODING 'UTF8',
+    ON_ERROR ignore,
+    LOG_VERBOSITY verbose
+)
+/************************/
+
+/******** QUERY *********/
+ANALYZE (VERBOSE true, SKIP_LOCKED false) ONLY Deepak_Mahto.copy18
+/************************/
+
+ANALYZE
+                                                  List of tables
+    Schema    |  Name  | Type  |             Owner             | Persistence | Access method | Size  | Description 
+--------------+--------+-------+-------------------------------+-------------+---------------+-------+-------------
+ deepak_mahto | copy18 | table | databaserookies_wordpress_com | permanent   | heap          | 16 kB | NULL
+(1 row)
+
+                                                      Table "deepak_mahto.copy18"
+     Column     |            Type             | Collation | Nullable |  Default  | Storage  | Compression | Stats target | Description 
+----------------+-----------------------------+-----------+----------+-----------+----------+-------------+--------------+-------------
+ first_column   | integer                     |           |          |           | plain    |             |              | 
+ second_column  | text                        |           |          | 'x'::text | extended |             |              | 
+ third_column   | text                        |           | not null |           | extended |             |              | 
+ fourth_column  | text                        |           |          |           | extended |             |              | 
+ fifth_column   | boolean                     |           |          |           | plain    |             |              | 
+ sixth_column   | date                        |           |          |           | plain    |             |              | 
+ seventh_column | timestamp without time zone |           |          |           | plain    |             |              | 
+Check constraints:
+    "chk_copy18_fourth_column" CHECK (length(fourth_column) > 2)
+Not-null constraints:
+    "nn_copy18_third_column" NOT NULL "third_column"
+Access method: heap
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE true, VERBOSE true, SETTINGS true, TIMING true, BUFFERS true, MEMORY true, COSTS true, WAL true, FORMAT TEXT) SELECT * FROM Deepak_Mahto.copy18
+/************************/
+
+                                                   QUERY PLAN                                                    
+-----------------------------------------------------------------------------------------------------------------
+ Seq Scan on deepak_mahto.copy18  (cost=0.00..1.03 rows=3 width=26) (actual time=0.015..0.017 rows=3.00 loops=1)
+   Output: first_column, second_column, third_column, fourth_column, fifth_column, sixth_column, seventh_column
+   Buffers: shared hit=1
+ Query Identifier: -6877189806458496890
+ Planning:
+   Buffers: shared hit=23
+   Memory: used=9kB  allocated=16kB
+ Planning Time: 0.420 ms
+ Execution Time: 0.046 ms
+(9 rows)
+
+/******** QUERY *********/
+SELECT * FROM Deepak_Mahto.copy18
+/************************/
+
+ first_column | second_column | third_column | fourth_column | fifth_column | sixth_column |   seventh_column    
+--------------+---------------+--------------+---------------+--------------+--------------+---------------------
+            1 | a             | a            | aaaa          | t            | 2024-01-01   | 2024-01-01 12:00:00
+            2 | a             | a            | aaaa          | f            | 2024-01-02   | 2024-01-01 12:00:00
+            3 | a             | a            | aaaa          | t            | 2024-01-03   | 2024-01-01 12:00:00
+(3 rows)
+
+                                                  List of tables
+    Schema    |  Name  | Type  |             Owner             | Persistence | Access method | Size  | Description 
+--------------+--------+-------+-------------------------------+-------------+---------------+-------+-------------
+ deepak_mahto | copy18 | table | databaserookies_wordpress_com | permanent   | heap          | 16 kB | NULL
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS Deepak_Mahto.number_names
+(
+    number SMALLINT CONSTRAINT nn_number_names_number NOT NULL DEFAULT 0::SMALLINT,
+    name TEXT CONSTRAINT nn_number_names_name NOT NULL DEFAULT 'zero'::text
+)
+TABLESPACE databaserookies_wordpress_com_data
+/************************/
+
+CREATE TABLE
+                                                        List of tables
+    Schema    |     Name     | Type  |             Owner             | Persistence | Access method |    Size    | Description 
+--------------+--------------+-------+-------------------------------+-------------+---------------+------------+-------------
+ deepak_mahto | number_names | table | databaserookies_wordpress_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+                                       Table "deepak_mahto.number_names"
+ Column |   Type   | Collation | Nullable |   Default    | Storage  | Compression | Stats target | Description 
+--------+----------+-----------+----------+--------------+----------+-------------+--------------+-------------
+ number | smallint |           | not null | 0::smallint  | plain    |             |              | 
+ name   | text     |           | not null | 'zero'::text | extended |             |              | 
+Not-null constraints:
+    "nn_number_names_number" NOT NULL "number"
+    "nn_number_names_name" NOT NULL "name"
+Access method: heap
+
+/******** QUERY *********/
+COPY  Deepak_Mahto.number_names FROM STDIN WITH (FORMAT csv, ENCODING utf8, ON_ERROR ignore, LOG_VERBOSITY verbose)\g
+/************************/
+
+/******** QUERY *********/
+COPY  Deepak_Mahto.number_names FROM STDIN WITH (FORMAT csv, ENCODING utf8, ON_ERROR ignore, LOG_VERBOSITY verbose);
+/************************/
+
+COPY 10
+/******** QUERY *********/
+ANALYZE (VERBOSE true, SKIP_LOCKED false) ONLY Deepak_Mahto.number_names
+/************************/
+
+ANALYZE
+/******** QUERY *********/
+EXPLAIN (ANALYZE true, TIMING true, SETTINGS true, VERBOSE true, BUFFERS true, MEMORY true, COSTS true, WAL true, FORMAT TEXT) SELECT number, name FROM Deepak_Mahto.number_names
+/************************/
+
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on deepak_mahto.number_names  (cost=0.00..1.10 rows=10 width=6) (actual time=0.012..0.015 rows=10.00 loops=1)
+   Output: number, name
+   Buffers: shared hit=1
+ Query Identifier: -4304624802618895679
+ Planning:
+   Buffers: shared hit=8
+   Memory: used=6kB  allocated=8kB
+ Planning Time: 0.374 ms
+ Execution Time: 0.038 ms
+(9 rows)
+
+/******** QUERY *********/
+SELECT number, name FROM Deepak_Mahto.number_names
+/************************/
+
+ number | name  
+--------+-------
+      1 | one
+      2 | two
+      3 | three
+      4 | four
+      5 | five
+      6 | six
+      7 | seven
+      8 | eight
+      9 | nine
+     10 | ten
+(10 rows)
+
