@@ -1,0 +1,1 @@
+# [Did you know? Tables in PostgreSQL are limited to 1,600 columns](https://www.data-bene.io/en/blog/did-you-know-tables-in-postgresql-are-limited-to-1600-columns/)
