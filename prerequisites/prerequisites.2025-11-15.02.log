@@ -1,0 +1,5 @@
+/******** QUERY *********/
+ALTER ROLE boring_sql RENAME TO boringsql_com
+/************************/
+
+ALTER ROLE
