@@ -1,0 +1,51 @@
+         Connection Information
+      Parameter       |      Value      
+----------------------+-----------------
+ Database             | postgres
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 19270
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+ current_database |   user   | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+------------------+----------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ postgres         | postgres | postgres     | postgres     | postgres     | public         | 2025-11-14   | 11:32:42.478641+05:30 | 2025-11-14 11:32:42.478641+05:30
+(1 row)
+
+/******** QUERY *********/
+CREATE DATABASE www_data_bene_io
+WITH
+OWNER = www_data_bene_io
+TABLESPACE = www_data_bene_io_data
+IS_TEMPLATE = false
+TEMPLATE = template0
+LOCALE = 'en_US.UTF-8'
+ENCODING = UTF8
+LOCALE_PROVIDER = libc
+LC_COLLATE = 'en_US.UTF-8'
+LC_CTYPE = 'en_US.UTF-8'
+COLLATION_VERSION = '2.42'
+ALLOW_CONNECTIONS = true
+CONNECTION LIMIT -1
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'www_data_bene_io'
+/************************/
+
+ oid | datname | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate | datctype | datlocale | daticurules | datcollversion | datacl 
+-----+---------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+------------+----------+-----------+-------------+----------------+--------
+(0 rows)
+

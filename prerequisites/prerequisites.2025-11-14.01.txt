@@ -1,0 +1,30 @@
+         Connection Information
+      Parameter       |      Value      
+----------------------+-----------------
+ Database             | postgres
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 19270
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+-[ RECORD 1 ]-----+---------------------------------
+current_database  | postgres
+user              | postgres
+current_user      | postgres
+session_user      | postgres
+current_role      | postgres
+current_schema    | public
+current_date      | 2025-11-14
+current_time      | 11:32:42.478641+05:30
+current_timestamp | 2025-11-14 11:32:42.478641+05:30
+
+(0 rows)
+

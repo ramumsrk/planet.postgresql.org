@@ -1,0 +1,691 @@
+         Connection Information
+      Parameter       |      Value      
+----------------------+-----------------
+ Database             | postgres
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 19393
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+-[ RECORD 1 ]-----+---------------------------------
+current_database  | postgres
+user              | postgres
+current_user      | postgres
+session_user      | postgres
+current_role      | postgres
+current_schema    | public
+current_date      | 2025-11-14
+current_time      | 11:36:11.870143+05:30
+current_timestamp | 2025-11-14 11:36:11.870143+05:30
+
+List of tables
+-[ RECORD 1 ]-+--------------
+Schema        | pg_catalog
+Name          | pg_tablespace
+Type          | table
+Owner         | postgres
+Persistence   | permanent
+Access method | heap
+Size          | 48 kB
+Description   | NULL
+
+                                       Table "pg_catalog.pg_tablespace"
+   Column   |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid        | oid       |           | not null |         | plain    |             |              | 
+ spcname    | name      |           | not null |         | plain    |             |              | 
+ spcowner   | oid       |           | not null |         | plain    |             |              | 
+ spcacl     | aclitem[] |           |          |         | extended |             |              | 
+ spcoptions | text[]    | C         |          |         | extended |             |              | 
+Indexes:
+    "pg_tablespace_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_tablespace_spcname_index" UNIQUE CONSTRAINT, btree (spcname), tablespace "pg_global"
+Not-null constraints:
+    "pg_tablespace_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+(0 rows)
+
+CREATE TABLESPACE
+CREATE TABLESPACE
+CREATE TABLESPACE
+-[ RECORD 1 ]----------------------
+oid        | 58243
+spcname    | www_data_bene_io_data
+spcowner   | 58236
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 2 ]----------------------
+oid        | 58244
+spcname    | www_data_bene_io_index
+spcowner   | 58236
+spcacl     | NULL
+spcoptions | NULL
+-[ RECORD 3 ]----------------------
+oid        | 58245
+spcname    | www_data_bene_io_temp
+spcowner   | 58236
+spcacl     | NULL
+spcoptions | NULL
+
+List of databases
+-[ RECORD 1 ]-----+-------------------------------------------
+Name              | adventure_works
+Owner             | adventure_works
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 8102 kB
+Tablespace        | adventure_works_data
+Description       | NULL
+-[ RECORD 2 ]-----+-------------------------------------------
+Name              | colors
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7841 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 3 ]-----+-------------------------------------------
+Name              | databaserookies_wordpress_com
+Owner             | databaserookies_wordpress_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7974 kB
+Tablespace        | databaserookies_wordpress_com_data
+Description       | NULL
+-[ RECORD 4 ]-----+-------------------------------------------
+Name              | fruits
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7857 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 5 ]-----+-------------------------------------------
+Name              | kineteco
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 8033 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 6 ]-----+-------------------------------------------
+Name              | medium_com
+Owner             | medium_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 42 MB
+Tablespace        | medium_com_data
+Description       | NULL
+-[ RECORD 7 ]-----+-------------------------------------------
+Name              | northwind
+Owner             | northwind
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 9022 kB
+Tablespace        | northwind_data
+Description       | NULL
+-[ RECORD 8 ]-----+-------------------------------------------
+Name              | pagila
+Owner             | pagila
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 12 MB
+Tablespace        | pagila_data
+Description       | NULL
+-[ RECORD 9 ]-----+-------------------------------------------
+Name              | pgpedia_info
+Owner             | pgpedia_info
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | pgpedia_info_data
+Description       | NULL
+-[ RECORD 10 ]----+-------------------------------------------
+Name              | postgres
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | pg_default
+Description       | default administrative connection database
+-[ RECORD 11 ]----+-------------------------------------------
+Name              | practice
+Owner             | practice
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7926 kB
+Tablespace        | practice_data
+Description       | NULL
+-[ RECORD 12 ]----+-------------------------------------------
+Name              | template0
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | =c/postgres                               +
+                  | postgres=CTc/postgres
+Size              | 7902 kB
+Tablespace        | pg_default
+Description       | unmodifiable empty database
+-[ RECORD 13 ]----+-------------------------------------------
+Name              | template1
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | =c/postgres                               +
+                  | postgres=CTc/postgres
+Size              | 7801 kB
+Tablespace        | pg_default
+Description       | default template for new databases
+-[ RECORD 14 ]----+-------------------------------------------
+Name              | usda
+Owner             | usda
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 11 MB
+Tablespace        | usda_data
+Description       | NULL
+-[ RECORD 15 ]----+-------------------------------------------
+Name              | www_crunchydata_com
+Owner             | www_crunchydata_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7777 kB
+Tablespace        | www_crunchydata_com_data
+Description       | NULL
+-[ RECORD 16 ]----+-------------------------------------------
+Name              | www_cybertec_postgresql_com
+Owner             | www_cybertec_postgresql_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | www_cybertec_postgresql_com_data
+Description       | NULL
+-[ RECORD 17 ]----+-------------------------------------------
+Name              | www_postgresql_org
+Owner             | www_postgresql_org
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7982 kB
+Tablespace        | www_postgresql_org_data
+Description       | NULL
+
+List of databases
+-[ RECORD 1 ]-----+-------------------------------------------
+Name              | adventure_works
+Owner             | adventure_works
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 8102 kB
+Tablespace        | adventure_works_data
+Description       | NULL
+-[ RECORD 2 ]-----+-------------------------------------------
+Name              | colors
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7841 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 3 ]-----+-------------------------------------------
+Name              | databaserookies_wordpress_com
+Owner             | databaserookies_wordpress_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7974 kB
+Tablespace        | databaserookies_wordpress_com_data
+Description       | NULL
+-[ RECORD 4 ]-----+-------------------------------------------
+Name              | fruits
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7857 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 5 ]-----+-------------------------------------------
+Name              | kineteco
+Owner             | www_dot_linkedin_dot_com_learning
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 8033 kB
+Tablespace        | www_dot_linkedin_dot_com_learning_data
+Description       | NULL
+-[ RECORD 6 ]-----+-------------------------------------------
+Name              | medium_com
+Owner             | medium_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 42 MB
+Tablespace        | medium_com_data
+Description       | NULL
+-[ RECORD 7 ]-----+-------------------------------------------
+Name              | northwind
+Owner             | northwind
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 9022 kB
+Tablespace        | northwind_data
+Description       | NULL
+-[ RECORD 8 ]-----+-------------------------------------------
+Name              | pagila
+Owner             | pagila
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 12 MB
+Tablespace        | pagila_data
+Description       | NULL
+-[ RECORD 9 ]-----+-------------------------------------------
+Name              | pgpedia_info
+Owner             | pgpedia_info
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | pgpedia_info_data
+Description       | NULL
+-[ RECORD 10 ]----+-------------------------------------------
+Name              | postgres
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | pg_default
+Description       | default administrative connection database
+-[ RECORD 11 ]----+-------------------------------------------
+Name              | practice
+Owner             | practice
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7926 kB
+Tablespace        | practice_data
+Description       | NULL
+-[ RECORD 12 ]----+-------------------------------------------
+Name              | template0
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | =c/postgres                               +
+                  | postgres=CTc/postgres
+Size              | 7902 kB
+Tablespace        | pg_default
+Description       | unmodifiable empty database
+-[ RECORD 13 ]----+-------------------------------------------
+Name              | template1
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | =c/postgres                               +
+                  | postgres=CTc/postgres
+Size              | 7801 kB
+Tablespace        | pg_default
+Description       | default template for new databases
+-[ RECORD 14 ]----+-------------------------------------------
+Name              | usda
+Owner             | usda
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 11 MB
+Tablespace        | usda_data
+Description       | NULL
+-[ RECORD 15 ]----+-------------------------------------------
+Name              | www_crunchydata_com
+Owner             | www_crunchydata_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7777 kB
+Tablespace        | www_crunchydata_com_data
+Description       | NULL
+-[ RECORD 16 ]----+-------------------------------------------
+Name              | www_cybertec_postgresql_com
+Owner             | www_cybertec_postgresql_com
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_US.UTF-8
+Ctype             | en_US.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7902 kB
+Tablespace        | www_cybertec_postgresql_com_data
+Description       | NULL
+-[ RECORD 17 ]----+-------------------------------------------
+Name              | www_postgresql_org
+Owner             | www_postgresql_org
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | en_IN.UTF-8
+Ctype             | en_IN.UTF-8
+Locale            | NULL
+ICU Rules         | NULL
+Access privileges | NULL
+Size              | 7982 kB
+Tablespace        | www_postgresql_org_data
+Description       | NULL
+
+List of tables
+-[ RECORD 1 ]-+------------
+Schema        | pg_catalog
+Name          | pg_database
+Type          | table
+Owner         | postgres
+Persistence   | permanent
+Access method | heap
+Size          | 48 kB
+Description   | NULL
+
+                                          Table "pg_catalog.pg_database"
+     Column     |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid       |           | not null |         | plain    |             |              | 
+ datname        | name      |           | not null |         | plain    |             |              | 
+ datdba         | oid       |           | not null |         | plain    |             |              | 
+ encoding       | integer   |           | not null |         | plain    |             |              | 
+ datlocprovider | "char"    |           | not null |         | plain    |             |              | 
+ datistemplate  | boolean   |           | not null |         | plain    |             |              | 
+ datallowconn   | boolean   |           | not null |         | plain    |             |              | 
+ dathasloginevt | boolean   |           | not null |         | plain    |             |              | 
+ datconnlimit   | integer   |           | not null |         | plain    |             |              | 
+ datfrozenxid   | xid       |           | not null |         | plain    |             |              | 
+ datminmxid     | xid       |           | not null |         | plain    |             |              | 
+ dattablespace  | oid       |           | not null |         | plain    |             |              | 
+ datcollate     | text      | C         | not null |         | extended |             |              | 
+ datctype       | text      | C         | not null |         | extended |             |              | 
+ datlocale      | text      | C         |          |         | extended |             |              | 
+ daticurules    | text      | C         |          |         | extended |             |              | 
+ datcollversion | text      | C         |          |         | extended |             |              | 
+ datacl         | aclitem[] |           |          |         | extended |             |              | 
+Indexes:
+    "pg_database_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_database_datname_index" UNIQUE CONSTRAINT, btree (datname), tablespace "pg_global"
+Not-null constraints:
+    "pg_database_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+ oid | datname | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate | datctype | datlocale | daticurules | datcollversion | datacl 
+-----+---------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+------------+----------+-----------+-------------+----------------+--------
+(0 rows)
+
+CREATE DATABASE
+-[ RECORD 1 ]--+-----------------
+oid            | 58246
+datname        | www_data_bene_io
+datdba         | 58236
+encoding       | 6
+datlocprovider | c
+datistemplate  | f
+datallowconn   | t
+dathasloginevt | f
+datconnlimit   | -1
+datfrozenxid   | 744
+datminmxid     | 1
+dattablespace  | 58243
+datcollate     | en_US.UTF-8
+datctype       | en_US.UTF-8
+datlocale      | NULL
+daticurules    | NULL
+datcollversion | 2.42
+datacl         | NULL
+
+         Connection Information
+      Parameter       |      Value       
+----------------------+------------------
+ Database             | www_data_bene_io
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 19410
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+-[ RECORD 1 ]-----+---------------------------------
+current_database  | www_data_bene_io
+user              | postgres
+current_user      | postgres
+session_user      | postgres
+current_role      | postgres
+current_schema    | public
+current_date      | 2025-11-14
+current_time      | 11:37:17.944013+05:30
+current_timestamp | 2025-11-14 11:37:17.944013+05:30
+
+List of schemas
+-[ RECORD 1 ]-----+---------------------------------------
+Name              | public
+Owner             | pg_database_owner
+Access privileges | pg_database_owner=UC/pg_database_owner+
+                  | =U/pg_database_owner
+Description       | standard public schema
+
+CREATE SCHEMA
+CREATE SCHEMA
+Objects in extension "plpgsql"
+-[ RECORD 1 ]------+------------------------------------------
+Object description | function plpgsql_call_handler()
+-[ RECORD 2 ]------+------------------------------------------
+Object description | function plpgsql_inline_handler(internal)
+-[ RECORD 3 ]------+------------------------------------------
+Object description | function plpgsql_validator(oid)
+-[ RECORD 4 ]------+------------------------------------------
+Object description | language plpgsql
+
+CREATE EXTENSION
+Objects in extension "pg_stat_statements"
+-[ RECORD 1 ]------+---------------------------------------------------------------------------
+Object description | function www_data_bene_io.pg_stat_statements(boolean)
+-[ RECORD 2 ]------+---------------------------------------------------------------------------
+Object description | function www_data_bene_io.pg_stat_statements_info()
+-[ RECORD 3 ]------+---------------------------------------------------------------------------
+Object description | function www_data_bene_io.pg_stat_statements_reset(oid,oid,bigint,boolean)
+-[ RECORD 4 ]------+---------------------------------------------------------------------------
+Object description | type www_data_bene_io.pg_stat_statements
+-[ RECORD 5 ]------+---------------------------------------------------------------------------
+Object description | type www_data_bene_io.pg_stat_statements[]
+-[ RECORD 6 ]------+---------------------------------------------------------------------------
+Object description | type www_data_bene_io.pg_stat_statements_info
+-[ RECORD 7 ]------+---------------------------------------------------------------------------
+Object description | type www_data_bene_io.pg_stat_statements_info[]
+-[ RECORD 8 ]------+---------------------------------------------------------------------------
+Object description | view www_data_bene_io.pg_stat_statements
+-[ RECORD 9 ]------+---------------------------------------------------------------------------
+Object description | view www_data_bene_io.pg_stat_statements_info
+
+Objects in extension "plpgsql"
+-[ RECORD 1 ]------+------------------------------------------
+Object description | function plpgsql_call_handler()
+-[ RECORD 2 ]------+------------------------------------------
+Object description | function plpgsql_inline_handler(internal)
+-[ RECORD 3 ]------+------------------------------------------
+Object description | function plpgsql_validator(oid)
+-[ RECORD 4 ]------+------------------------------------------
+Object description | language plpgsql
+
+List of schemas
+-[ RECORD 1 ]-----+---------------------------------------
+Name              | frédéric_delacourt
+Owner             | www_data_bene_io
+Access privileges | NULL
+Description       | NULL
+-[ RECORD 2 ]-----+---------------------------------------
+Name              | public
+Owner             | pg_database_owner
+Access privileges | pg_database_owner=UC/pg_database_owner+
+                  | =U/pg_database_owner
+Description       | standard public schema
+-[ RECORD 3 ]-----+---------------------------------------
+Name              | www_data_bene_io
+Owner             | www_data_bene_io
+Access privileges | NULL
+Description       | NULL
+

@@ -1,0 +1,300 @@
+         Connection Information
+      Parameter       |      Value      
+----------------------+-----------------
+ Database             | postgres
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 19147
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+ current_database |   user   | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+------------------+----------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ postgres         | postgres | postgres     | postgres     | postgres     | public         | 2025-11-14   | 11:28:47.657387+05:30 | 2025-11-14 11:28:47.657387+05:30
+(1 row)
+
+                                        List of tables
+   Schema   |   Name    | Type  |  Owner   | Persistence | Access method | Size  | Description 
+------------+-----------+-------+----------+-------------+---------------+-------+-------------
+ pg_catalog | pg_authid | table | postgres | permanent   | heap          | 40 kB | NULL
+(1 row)
+
+                                                   Table "pg_catalog.pg_authid"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid                      |           | not null |         | plain    |             |              | 
+ rolname        | name                     |           | not null |         | plain    |             |              | 
+ rolsuper       | boolean                  |           | not null |         | plain    |             |              | 
+ rolinherit     | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreaterole  | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreatedb    | boolean                  |           | not null |         | plain    |             |              | 
+ rolcanlogin    | boolean                  |           | not null |         | plain    |             |              | 
+ rolreplication | boolean                  |           | not null |         | plain    |             |              | 
+ rolbypassrls   | boolean                  |           | not null |         | plain    |             |              | 
+ rolconnlimit   | integer                  |           | not null |         | plain    |             |              | 
+ rolpassword    | text                     | C         |          |         | extended |             |              | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    |             |              | 
+Indexes:
+    "pg_authid_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_authid_rolname_index" UNIQUE CONSTRAINT, btree (rolname), tablespace "pg_global"
+Not-null constraints:
+    "pg_authid_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_data_bene_io'
+/************************/
+
+ oid | rolname | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit | rolpassword | rolvaliduntil 
+-----+---------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+-------------+---------------
+(0 rows)
+
+                                                   Table "pg_catalog.pg_authid"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid                      |           | not null |         | plain    |             |              | 
+ rolname        | name                     |           | not null |         | plain    |             |              | 
+ rolsuper       | boolean                  |           | not null |         | plain    |             |              | 
+ rolinherit     | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreaterole  | boolean                  |           | not null |         | plain    |             |              | 
+ rolcreatedb    | boolean                  |           | not null |         | plain    |             |              | 
+ rolcanlogin    | boolean                  |           | not null |         | plain    |             |              | 
+ rolreplication | boolean                  |           | not null |         | plain    |             |              | 
+ rolbypassrls   | boolean                  |           | not null |         | plain    |             |              | 
+ rolconnlimit   | integer                  |           | not null |         | plain    |             |              | 
+ rolpassword    | text                     | C         |          |         | extended |             |              | 
+ rolvaliduntil  | timestamp with time zone |           |          |         | plain    |             |              | 
+Indexes:
+    "pg_authid_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_authid_rolname_index" UNIQUE CONSTRAINT, btree (rolname), tablespace "pg_global"
+Not-null constraints:
+    "pg_authid_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_data_bene_io'
+/************************/
+
+ rolname | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword | rolvaliduntil | rolbypassrls | rolconfig | oid 
+---------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------+--------------+-----------+-----
+(0 rows)
+
+/******** QUERY *********/
+CREATE ROLE www_data_bene_io
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOINHERIT
+NOREPLICATION
+NOBYPASSRLS
+PASSWORD NULL
+IN ROLE pg_read_server_files, pg_read_all_settings, pg_read_all_stats
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+CONNECTION LIMIT -1
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_data_bene_io'
+/************************/
+
+  oid  |     rolname      | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit | rolpassword |       rolvaliduntil       
+-------+------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+-------------+---------------------------
+ 58236 | www_data_bene_io | f        | f          | f             | f           | t           | f              | f            |           -1 | NULL        | 2025-12-31 23:59:59+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_data_bene_io'
+/************************/
+
+     rolname      | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword |       rolvaliduntil       | rolbypassrls | rolconfig |  oid  
+------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------------------+--------------+-----------+-------
+ www_data_bene_io | f        | f          | f             | f           | t           | f              |           -1 | ********    | 2025-12-31 23:59:59+05:30 | f            | NULL      | 58236
+(1 row)
+
+                                          List of tables
+   Schema   |     Name      | Type  |  Owner   | Persistence | Access method | Size  | Description 
+------------+---------------+-------+----------+-------------+---------------+-------+-------------
+ pg_catalog | pg_tablespace | table | postgres | permanent   | heap          | 48 kB | NULL
+(1 row)
+
+                                       Table "pg_catalog.pg_tablespace"
+   Column   |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid        | oid       |           | not null |         | plain    |             |              | 
+ spcname    | name      |           | not null |         | plain    |             |              | 
+ spcowner   | oid       |           | not null |         | plain    |             |              | 
+ spcacl     | aclitem[] |           |          |         | extended |             |              | 
+ spcoptions | text[]    | C         |          |         | extended |             |              | 
+Indexes:
+    "pg_tablespace_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_tablespace_spcname_index" UNIQUE CONSTRAINT, btree (spcname), tablespace "pg_global"
+Not-null constraints:
+    "pg_tablespace_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'www_data_bene_io_%'
+/************************/
+
+ oid | spcname | spcowner | spcacl | spcoptions 
+-----+---------+----------+--------+------------
+(0 rows)
+
+/******** QUERY *********/
+CREATE TABLESPACE www_data_bene_io_data
+OWNER www_data_bene_io
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/www_data_bene_io_data/'
+/************************/
+
+/******** QUERY *********/
+CREATE TABLESPACE www_data_bene_io_index
+OWNER www_data_bene_io
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/www_data_bene_io_index/'
+/************************/
+
+/******** QUERY *********/
+CREATE TABLESPACE www_data_bene_io_temp
+OWNER www_data_bene_io
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/www_data_bene_io_temp/'
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'www_data_bene_io_%'
+/************************/
+
+ oid | spcname | spcowner | spcacl | spcoptions 
+-----+---------+----------+--------+------------
+(0 rows)
+
+                                                                                                                            List of databases
+             Name              |               Owner               | Encoding | Locale Provider |   Collate   |    Ctype    | Locale | ICU Rules |   Access privileges   |  Size   |               Tablespace               |                Description                 
+-------------------------------+-----------------------------------+----------+-----------------+-------------+-------------+--------+-----------+-----------------------+---------+----------------------------------------+--------------------------------------------
+ adventure_works               | adventure_works                   | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 8102 kB | adventure_works_data                   | NULL
+ colors                        | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7841 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ databaserookies_wordpress_com | databaserookies_wordpress_com     | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7974 kB | databaserookies_wordpress_com_data     | NULL
+ fruits                        | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7857 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ kineteco                      | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 8033 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ medium_com                    | medium_com                        | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 42 MB   | medium_com_data                        | NULL
+ northwind                     | northwind                         | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 9022 kB | northwind_data                         | NULL
+ pagila                        | pagila                            | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 12 MB   | pagila_data                            | NULL
+ pgpedia_info                  | pgpedia_info                      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | pgpedia_info_data                      | NULL
+ postgres                      | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | pg_default                             | default administrative connection database
+ practice                      | practice                          | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7926 kB | practice_data                          | NULL
+ template0                     | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7902 kB | pg_default                             | unmodifiable empty database
+                               |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ template1                     | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7801 kB | pg_default                             | default template for new databases
+                               |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ usda                          | usda                              | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 11 MB   | usda_data                              | NULL
+ www_crunchydata_com           | www_crunchydata_com               | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7777 kB | www_crunchydata_com_data               | NULL
+ www_cybertec_postgresql_com   | www_cybertec_postgresql_com       | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | www_cybertec_postgresql_com_data       | NULL
+ www_postgresql_org            | www_postgresql_org                | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7982 kB | www_postgresql_org_data                | NULL
+(17 rows)
+
+                                                                                                                            List of databases
+             Name              |               Owner               | Encoding | Locale Provider |   Collate   |    Ctype    | Locale | ICU Rules |   Access privileges   |  Size   |               Tablespace               |                Description                 
+-------------------------------+-----------------------------------+----------+-----------------+-------------+-------------+--------+-----------+-----------------------+---------+----------------------------------------+--------------------------------------------
+ adventure_works               | adventure_works                   | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 8102 kB | adventure_works_data                   | NULL
+ colors                        | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7841 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ databaserookies_wordpress_com | databaserookies_wordpress_com     | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7974 kB | databaserookies_wordpress_com_data     | NULL
+ fruits                        | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7857 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ kineteco                      | www_dot_linkedin_dot_com_learning | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 8033 kB | www_dot_linkedin_dot_com_learning_data | NULL
+ medium_com                    | medium_com                        | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 42 MB   | medium_com_data                        | NULL
+ northwind                     | northwind                         | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 9022 kB | northwind_data                         | NULL
+ pagila                        | pagila                            | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 12 MB   | pagila_data                            | NULL
+ pgpedia_info                  | pgpedia_info                      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | pgpedia_info_data                      | NULL
+ postgres                      | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | pg_default                             | default administrative connection database
+ practice                      | practice                          | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7926 kB | practice_data                          | NULL
+ template0                     | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7902 kB | pg_default                             | unmodifiable empty database
+                               |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ template1                     | postgres                          | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | =c/postgres          +| 7801 kB | pg_default                             | default template for new databases
+                               |                                   |          |                 |             |             |        |           | postgres=CTc/postgres |         |                                        | 
+ usda                          | usda                              | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 11 MB   | usda_data                              | NULL
+ www_crunchydata_com           | www_crunchydata_com               | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7777 kB | www_crunchydata_com_data               | NULL
+ www_cybertec_postgresql_com   | www_cybertec_postgresql_com       | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL                  | 7902 kB | www_cybertec_postgresql_com_data       | NULL
+ www_postgresql_org            | www_postgresql_org                | UTF8     | libc            | en_IN.UTF-8 | en_IN.UTF-8 | NULL   | NULL      | NULL                  | 7982 kB | www_postgresql_org_data                | NULL
+(17 rows)
+
+                                         List of tables
+   Schema   |    Name     | Type  |  Owner   | Persistence | Access method | Size  | Description 
+------------+-------------+-------+----------+-------------+---------------+-------+-------------
+ pg_catalog | pg_database | table | postgres | permanent   | heap          | 48 kB | NULL
+(1 row)
+
+                                          Table "pg_catalog.pg_database"
+     Column     |   Type    | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+-----------+-----------+----------+---------+----------+-------------+--------------+-------------
+ oid            | oid       |           | not null |         | plain    |             |              | 
+ datname        | name      |           | not null |         | plain    |             |              | 
+ datdba         | oid       |           | not null |         | plain    |             |              | 
+ encoding       | integer   |           | not null |         | plain    |             |              | 
+ datlocprovider | "char"    |           | not null |         | plain    |             |              | 
+ datistemplate  | boolean   |           | not null |         | plain    |             |              | 
+ datallowconn   | boolean   |           | not null |         | plain    |             |              | 
+ dathasloginevt | boolean   |           | not null |         | plain    |             |              | 
+ datconnlimit   | integer   |           | not null |         | plain    |             |              | 
+ datfrozenxid   | xid       |           | not null |         | plain    |             |              | 
+ datminmxid     | xid       |           | not null |         | plain    |             |              | 
+ dattablespace  | oid       |           | not null |         | plain    |             |              | 
+ datcollate     | text      | C         | not null |         | extended |             |              | 
+ datctype       | text      | C         | not null |         | extended |             |              | 
+ datlocale      | text      | C         |          |         | extended |             |              | 
+ daticurules    | text      | C         |          |         | extended |             |              | 
+ datcollversion | text      | C         |          |         | extended |             |              | 
+ datacl         | aclitem[] |           |          |         | extended |             |              | 
+Indexes:
+    "pg_database_oid_index" PRIMARY KEY, btree (oid), tablespace "pg_global"
+    "pg_database_datname_index" UNIQUE CONSTRAINT, btree (datname), tablespace "pg_global"
+Not-null constraints:
+    "pg_database_oid_not_null" NOT NULL "oid"
+Tablespace: "pg_global"
+Access method: heap
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'www_data_bene_io'
+/************************/
+
+ oid | datname | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate | datctype | datlocale | daticurules | datcollversion | datacl 
+-----+---------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+------------+----------+-----------+-------------+----------------+--------
+(0 rows)
+
+/******** QUERY *********/
+CREATE DATABASE www_data_bene_io
+WITH
+OWNER = www_data_bene_io
+TABLESPACE = www_data_bene_io_data
+IS_TEMPLATE = false
+TEMPLATE = template0
+LOCALE = 'en_US.UTF-8'
+ENCODING = UTF8
+LOCALE_PROVIDER = libc
+LC_COLLATE = 'en_US.UTF-8'
+LC_CTYPE = 'en_US.UTF-8'
+COLLATION_VERSION = '2.42'
+ALLOW_CONNECTIONS = true
+CONNECTIONS LIMIT -1
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_database WHERE datname = 'www_data_bene_io'
+/************************/
+
+ oid | datname | datdba | encoding | datlocprovider | datistemplate | datallowconn | dathasloginevt | datconnlimit | datfrozenxid | datminmxid | dattablespace | datcollate | datctype | datlocale | daticurules | datcollversion | datacl 
+-----+---------+--------+----------+----------------+---------------+--------------+----------------+--------------+--------------+------------+---------------+------------+----------+-----------+-------------+----------------+--------
+(0 rows)
+
