@@ -1,0 +1,1 @@
+My one or more attempts at [DAVE STOKES](https://stokerpostgresql.blogspot.com/) [PostgreSQL](https://www.postgresql.org/) [blog](https://stokerpostgresql.blogspot.com/) posts
