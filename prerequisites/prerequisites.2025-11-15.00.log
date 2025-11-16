@@ -1,0 +1,73 @@
+/******** QUERY *********/
+CREATE ROLE stokerpostgresql_blogspot_com
+WITH
+LOGIN
+CREATEDB
+NOINHERIT
+NOSUPERUSER
+NOREPLICATION
+NOBYPASSRLS
+IN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_stats
+PASSWORD NULL
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+CREATE TABLESPACE stokerpostgresql_blogspot_com_data
+OWNER stokerpostgresql_blogspot_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/stokerpostgresql_blogspot_com_data/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE stokerpostgresql_blogspot_com_index
+OWNER stokerpostgresql_blogspot_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/stokerpostgresql_blogspot_com_index/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE stokerpostgresql_blogspot_com_temp
+OWNER stokerpostgresql_blogspot_com
+LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/stokerpostgresql_blogspot_com_temp/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE DATABASE stokerpostgresql_blogspot_com
+WITH
+OWNER = stokerpostgresql_blogspot_com
+TABLESPACE = stokerpostgresql_blogspot_com_data
+TEMPLATE = template0
+IS_TEMPLATE = false
+ALLOW_CONNECTIONS = true
+CONNECTION LIMIT = -1
+LOCALE_PROVIDER = libc 
+COLLATION_VERSION = '2.42'
+ENCODING = UTF8
+LOCALE = 'en_US.UTF-8'
+LC_COLLATE = 'en_US.UTF-8'
+LC_CTYPE = 'en_US.UTF-8'
+/************************/
+
+CREATE DATABASE
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS stokerpostgresql_blogspot_com AUTHORIZATION stokerpostgresql_blogspot_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS dave_stokes AUTHORIZATION stokerpostgresql_blogspot_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements
+WITH
+SCHEMA dave_stokes
+VERSION '1.12'
+CASCADE
+/************************/
+
+CREATE EXTENSION
