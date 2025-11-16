@@ -1,0 +1,198 @@
+/******** QUERY *********/
+SELECT ctid, first_column FROM dave_stokes.ex02
+/************************/
+
+  ctid  | first_column 
+--------+--------------
+ (0,1)  |            1
+ (0,2)  |            2
+ (0,3)  |            3
+ (0,4)  |            4
+ (0,5)  |            5
+ (0,6)  |            6
+ (0,7)  |            7
+ (0,8)  |            8
+ (0,9)  |            9
+ (0,10) |           10
+(10 rows)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.page_header(dave_stokes.get_raw_page('dave_stokes.ex02',0))
+/************************/
+
+    lsn    | checksum | flags | lower | upper | special | pagesize | version | prune_xid 
+-----------+----------+-------+-------+-------+---------+----------+---------+-----------
+ 0/B9917A0 |    -1287 |     0 |    64 |  7872 |    8192 |     8192 |       4 |         0
+(1 row)
+
+                                                                                                     List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |    Size    |                                                  Description                                                   
+-------------+------+-------+-------------------------------+-------------+---------------+------------+----------------------------------------------------------------------------------------------------------------
+ dave_stokes | ex02 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 8192 bytes | Refer to section CTIDs in https://stokerpostgresql.blogspot.com/2025/01/now-that-we-know-where-postgresql.html
+(1 row)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_SCHEMA, CURRENT_ROLE, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+       current_database        |   user   | current_user | session_user | current_schema | current_role | current_date |     current_time      |        current_timestamp         
+-------------------------------+----------+--------------+--------------+----------------+--------------+--------------+-----------------------+----------------------------------
+ stokerpostgresql_blogspot_com | postgres | postgres     | postgres     | public         | postgres     | 2025-11-16   | 12:19:28.338293+05:30 | 2025-11-16 12:19:28.338293+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex02',0::bigint))
+/************************/
+
+ lp | lp_off | lp_flags | lp_len | t_xmin | t_xmax | t_field3 | t_ctid | t_infomask2 | t_infomask | t_hoff | t_bits | t_oid | t_data 
+----+--------+----------+--------+--------+--------+----------+--------+-------------+------------+--------+--------+-------+--------
+  1 |   8160 |        1 |     26 |   1306 |      0 |        0 | (0,1)  |           1 |       2304 |     24 | NULL   |  NULL | \x0100
+  2 |   8128 |        1 |     26 |   1306 |      0 |        0 | (0,2)  |           1 |       2304 |     24 | NULL   |  NULL | \x0200
+  3 |   8096 |        1 |     26 |   1306 |      0 |        0 | (0,3)  |           1 |       2304 |     24 | NULL   |  NULL | \x0300
+  4 |   8064 |        1 |     26 |   1306 |      0 |        0 | (0,4)  |           1 |       2304 |     24 | NULL   |  NULL | \x0400
+  5 |   8032 |        1 |     26 |   1306 |      0 |        0 | (0,5)  |           1 |       2304 |     24 | NULL   |  NULL | \x0500
+  6 |   8000 |        1 |     26 |   1306 |      0 |        0 | (0,6)  |           1 |       2304 |     24 | NULL   |  NULL | \x0600
+  7 |   7968 |        1 |     26 |   1306 |      0 |        0 | (0,7)  |           1 |       2304 |     24 | NULL   |  NULL | \x0700
+  8 |   7936 |        1 |     26 |   1306 |      0 |        0 | (0,8)  |           1 |       2304 |     24 | NULL   |  NULL | \x0800
+  9 |   7904 |        1 |     26 |   1306 |      0 |        0 | (0,9)  |           1 |       2304 |     24 | NULL   |  NULL | \x0900
+ 10 |   7872 |        1 |     26 |   1306 |      0 |        0 | (0,10) |           1 |       2304 |     24 | NULL   |  NULL | \x0a00
+(10 rows)
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex02',0))
+/************************/
+
+ lp | t_ctid | t_data 
+----+--------+--------
+  1 | (0,1)  | \x0100
+  2 | (0,2)  | \x0200
+  3 | (0,3)  | \x0300
+  4 | (0,4)  | \x0400
+  5 | (0,5)  | \x0500
+  6 | (0,6)  | \x0600
+  7 | (0,7)  | \x0700
+  8 | (0,8)  | \x0800
+  9 | (0,9)  | \x0900
+ 10 | (0,10) | \x0a00
+(10 rows)
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex02',0))
+/************************/
+
+ lp | t_ctid | t_data 
+----+--------+--------
+  1 | (0,1)  | \x0100
+  2 | (0,2)  | \x0200
+  3 | (0,3)  | \x0300
+  4 | (0,4)  | \x0400
+  5 | (0,5)  | \x0500
+  6 | (0,6)  | \x0600
+  7 | (0,7)  | \x0700
+  8 | (0,8)  | \x0800
+  9 | (0,9)  | \x0900
+ 10 | (0,10) | \x0a00
+(10 rows)
+
+/******** QUERY *********/
+SELECT ctid, first_column, second_column FROM dave_stokes.ex01
+/************************/
+
+ ctid  | first_column | second_column 
+-------+--------------+---------------
+ (0,1) |            1 |             1
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.page_header(dave_stokes.get_raw_page('dave_stokes.ex01',0))
+/************************/
+
+    lsn    | checksum | flags | lower | upper | special | pagesize | version | prune_xid 
+-----------+----------+-------+-------+-------+---------+----------+---------+-----------
+ 0/B956D70 |    16396 |     0 |    28 |  8160 |    8192 |     8192 |       4 |         0
+(1 row)
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_tuple_items(dave_stokes.get_raw_page('dave_stokes.ex01',0))
+/************************/
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex01',0))
+/************************/
+
+ lp | t_ctid |   t_data   
+----+--------+------------
+  1 | (0,1)  | \x01000100
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.heap_page_item_attrs(dave_stokes.get_raw_page('dave_stokes.ex01',0))
+/************************/
+
+                      Objects in extension "pageinspect"
+                              Object description                               
+-------------------------------------------------------------------------------
+ function dave_stokes.brin_metapage_info(bytea)
+ function dave_stokes.brin_page_items(bytea,regclass)
+ function dave_stokes.brin_page_type(bytea)
+ function dave_stokes.brin_revmap_data(bytea)
+ function dave_stokes.bt_metap(text)
+ function dave_stokes.bt_multi_page_stats(text,bigint,bigint)
+ function dave_stokes.bt_page_items(bytea)
+ function dave_stokes.bt_page_items(text,bigint)
+ function dave_stokes.bt_page_stats(text,bigint)
+ function dave_stokes.fsm_page_contents(bytea)
+ function dave_stokes.get_raw_page(text,bigint)
+ function dave_stokes.get_raw_page(text,text,bigint)
+ function dave_stokes.gin_leafpage_items(bytea)
+ function dave_stokes.gin_metapage_info(bytea)
+ function dave_stokes.gin_page_opaque_info(bytea)
+ function dave_stokes.gist_page_items_bytea(bytea)
+ function dave_stokes.gist_page_items(bytea,regclass)
+ function dave_stokes.gist_page_opaque_info(bytea)
+ function dave_stokes.hash_bitmap_info(regclass,bigint)
+ function dave_stokes.hash_metapage_info(bytea)
+ function dave_stokes.hash_page_items(bytea)
+ function dave_stokes.hash_page_stats(bytea)
+ function dave_stokes.hash_page_type(bytea)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass,boolean)
+ function dave_stokes.heap_page_items(bytea)
+ function dave_stokes.heap_tuple_infomask_flags(integer,integer)
+ function dave_stokes.page_checksum(bytea,bigint)
+ function dave_stokes.page_header(bytea)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text,boolean)
+(31 rows)
+
+               Objects in extension "pg_stat_statements"
+                          Object description                           
+-----------------------------------------------------------------------
+ function dave_stokes.pg_stat_statements(boolean)
+ function dave_stokes.pg_stat_statements_info()
+ function dave_stokes.pg_stat_statements_reset(oid,oid,bigint,boolean)
+ type dave_stokes.pg_stat_statements
+ type dave_stokes.pg_stat_statements[]
+ type dave_stokes.pg_stat_statements_info
+ type dave_stokes.pg_stat_statements_info[]
+ view dave_stokes.pg_stat_statements
+ view dave_stokes.pg_stat_statements_info
+(9 rows)
+
+      Objects in extension "plpgsql"
+            Object description             
+-------------------------------------------
+ function plpgsql_call_handler()
+ function plpgsql_inline_handler(internal)
+ function plpgsql_validator(oid)
+ language plpgsql
+(4 rows)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.heap_page_item_attrs(dave_stokes.get_raw_page('dave_stokes.ex01',0),'pg_class'::regclass)
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.heap_page_item_attrs(dave_stokes.get_raw_page('dave_stokes.ex01',0),'pg_class'::regclass) LIMIT 1
+/************************/
+

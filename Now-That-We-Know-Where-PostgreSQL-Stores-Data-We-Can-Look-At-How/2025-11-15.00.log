@@ -1,0 +1,181 @@
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS dave_stokes.ex02
+(
+    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL
+)
+TABLESPACE stokerpostgresql_blogspot_com_data
+/************************/
+
+CREATE TABLE
+                                                  List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |  Size   | Description 
+-------------+------+-------+-------------------------------+-------------+---------------+---------+-------------
+ dave_stokes | ex02 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 0 bytes | NULL
+(1 row)
+
+                                           Table "dave_stokes.ex02"
+    Column    |   Type   | Collation | Nullable | Default | Storage | Compression | Stats target | Description 
+--------------+----------+-----------+----------+---------+---------+-------------+--------------+-------------
+ first_column | smallint |           | not null |         | plain   |             |              | 
+Not-null constraints:
+    "nn_first_column" NOT NULL "first_column"
+Access method: heap
+
+/******** QUERY *********/
+INSERT INTO dave.stokes (first_column) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10)
+/************************/
+
+/******** QUERY *********/
+INSERT INTO dave_stokes.ex02 (first_column) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10)
+/************************/
+
+INSERT 0 10
+/******** QUERY *********/
+ANALYZE (VERBOSE true, SKIP_LOCKED false) dave_stokes.ex02
+/************************/
+
+ANALYZE
+/******** QUERY *********/
+SELECT first_column FROM dave_stokes.ex02
+/************************/
+
+ first_column 
+--------------
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+           10
+(10 rows)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_class WHERE relname = 'ex02'::text
+/************************/
+
+  oid  | relname | relnamespace | reltype | reloftype | relowner | relam | relfilenode | reltablespace | relpages | reltuples | relallvisible | relallfrozen | reltoastrelid | relhasindex | relisshared | relpersistence | relkind | relnatts | relchecks | relhasrules | relhastriggers | relhassubclass | relrowsecurity | relforcerowsecurity | relispopulated | relreplident | relispartition | relrewrite | relfrozenxid | relminmxid | relacl | reloptions | relpartbound 
+-------+---------+--------------+---------+-----------+----------+-------+-------------+---------------+----------+-----------+---------------+--------------+---------------+-------------+-------------+----------------+---------+----------+-----------+-------------+----------------+----------------+----------------+---------------------+----------------+--------------+----------------+------------+--------------+------------+--------+------------+--------------
+ 61656 | ex02    |        61603 |   61658 |         0 |    61594 |     2 |       61656 |             0 |        1 |        10 |             0 |            0 |             0 | f           | f           | p              | r       |        1 |         0 | f           | f              | f              | f              | f                   | t              | d            | f              |          0 |         1305 |          1 | NULL   | NULL       | NULL
+(1 row)
+
+/******** QUERY *********/
+SELECT ctid, first_column FROM dave_stokes.ex02
+/************************/
+
+  ctid  | first_column 
+--------+--------------
+ (0,1)  |            1
+ (0,2)  |            2
+ (0,3)  |            3
+ (0,4)  |            4
+ (0,5)  |            5
+ (0,6)  |            6
+ (0,7)  |            7
+ (0,8)  |            8
+ (0,9)  |            9
+ (0,10) |           10
+(10 rows)
+
+                      Objects in extension "pageinspect"
+                              Object description                               
+-------------------------------------------------------------------------------
+ function dave_stokes.brin_metapage_info(bytea)
+ function dave_stokes.brin_page_items(bytea,regclass)
+ function dave_stokes.brin_page_type(bytea)
+ function dave_stokes.brin_revmap_data(bytea)
+ function dave_stokes.bt_metap(text)
+ function dave_stokes.bt_multi_page_stats(text,bigint,bigint)
+ function dave_stokes.bt_page_items(bytea)
+ function dave_stokes.bt_page_items(text,bigint)
+ function dave_stokes.bt_page_stats(text,bigint)
+ function dave_stokes.fsm_page_contents(bytea)
+ function dave_stokes.get_raw_page(text,bigint)
+ function dave_stokes.get_raw_page(text,text,bigint)
+ function dave_stokes.gin_leafpage_items(bytea)
+ function dave_stokes.gin_metapage_info(bytea)
+ function dave_stokes.gin_page_opaque_info(bytea)
+ function dave_stokes.gist_page_items_bytea(bytea)
+ function dave_stokes.gist_page_items(bytea,regclass)
+ function dave_stokes.gist_page_opaque_info(bytea)
+ function dave_stokes.hash_bitmap_info(regclass,bigint)
+ function dave_stokes.hash_metapage_info(bytea)
+ function dave_stokes.hash_page_items(bytea)
+ function dave_stokes.hash_page_stats(bytea)
+ function dave_stokes.hash_page_type(bytea)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass,boolean)
+ function dave_stokes.heap_page_items(bytea)
+ function dave_stokes.heap_tuple_infomask_flags(integer,integer)
+ function dave_stokes.page_checksum(bytea,bigint)
+ function dave_stokes.page_header(bytea)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text,boolean)
+(31 rows)
+
+               Objects in extension "pg_stat_statements"
+                          Object description                           
+-----------------------------------------------------------------------
+ function dave_stokes.pg_stat_statements(boolean)
+ function dave_stokes.pg_stat_statements_info()
+ function dave_stokes.pg_stat_statements_reset(oid,oid,bigint,boolean)
+ type dave_stokes.pg_stat_statements
+ type dave_stokes.pg_stat_statements[]
+ type dave_stokes.pg_stat_statements_info
+ type dave_stokes.pg_stat_statements_info[]
+ view dave_stokes.pg_stat_statements
+ view dave_stokes.pg_stat_statements_info
+(9 rows)
+
+      Objects in extension "plpgsql"
+            Object description             
+-------------------------------------------
+ function plpgsql_call_handler()
+ function plpgsql_inline_handler(internal)
+ function plpgsql_validator(oid)
+ language plpgsql
+(4 rows)
+
+                      Objects in extension "pageinspect"
+                              Object description                               
+-------------------------------------------------------------------------------
+ function dave_stokes.brin_metapage_info(bytea)
+ function dave_stokes.brin_page_items(bytea,regclass)
+ function dave_stokes.brin_page_type(bytea)
+ function dave_stokes.brin_revmap_data(bytea)
+ function dave_stokes.bt_metap(text)
+ function dave_stokes.bt_multi_page_stats(text,bigint,bigint)
+ function dave_stokes.bt_page_items(bytea)
+ function dave_stokes.bt_page_items(text,bigint)
+ function dave_stokes.bt_page_stats(text,bigint)
+ function dave_stokes.fsm_page_contents(bytea)
+ function dave_stokes.get_raw_page(text,bigint)
+ function dave_stokes.get_raw_page(text,text,bigint)
+ function dave_stokes.gin_leafpage_items(bytea)
+ function dave_stokes.gin_metapage_info(bytea)
+ function dave_stokes.gin_page_opaque_info(bytea)
+ function dave_stokes.gist_page_items_bytea(bytea)
+ function dave_stokes.gist_page_items(bytea,regclass)
+ function dave_stokes.gist_page_opaque_info(bytea)
+ function dave_stokes.hash_bitmap_info(regclass,bigint)
+ function dave_stokes.hash_metapage_info(bytea)
+ function dave_stokes.hash_page_items(bytea)
+ function dave_stokes.hash_page_stats(bytea)
+ function dave_stokes.hash_page_type(bytea)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass)
+ function dave_stokes.heap_page_item_attrs(bytea,regclass,boolean)
+ function dave_stokes.heap_page_items(bytea)
+ function dave_stokes.heap_tuple_infomask_flags(integer,integer)
+ function dave_stokes.page_checksum(bytea,bigint)
+ function dave_stokes.page_header(bytea)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text)
+ function dave_stokes.tuple_data_split(oid,bytea,integer,integer,text,boolean)
+(31 rows)
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('ex02'::text, 0::bigint))
+/************************/
+

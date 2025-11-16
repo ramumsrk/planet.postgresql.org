@@ -1,0 +1,118 @@
+                Connection Information
+      Parameter       |             Value             
+----------------------+-------------------------------
+ Database             | stokerpostgresql_blogspot_com
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 24231
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+       current_database        |   user   | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+-------------------------------+----------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ stokerpostgresql_blogspot_com | postgres | postgres     | postgres     | postgres     | public         | 2025-11-15   | 10:53:02.174777+05:30 | 2025-11-15 10:53:02.174777+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_extension WHERE extname = 'pageinspect'
+/************************/
+
+ oid | extname | extowner | extnamespace | extrelocatable | extversion | extconfig | extcondition 
+-----+---------+----------+--------------+----------------+------------+-----------+--------------
+(0 rows)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_available_extensions WHERE name = 'pageinspect'
+/************************/
+
+    name     | default_version | installed_version |                        comment                        
+-------------+-----------------+-------------------+-------------------------------------------------------
+ pageinspect | 1.13            |                   | inspect the contents of database pages at a low level
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_available_extension_versions WHERE name = 'pageinspect'
+/************************/
+
+    name     | version | installed | superuser | trusted | relocatable | schema | requires |                        comment                        
+-------------+---------+-----------+-----------+---------+-------------+--------+----------+-------------------------------------------------------
+ pageinspect | 1.5     | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.10    | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.11    | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.12    | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.13    | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.6     | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.7     | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.8     | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+ pageinspect | 1.9     | f         | t         | f       | t           |        |          | inspect the contents of database pages at a low level
+(9 rows)
+
+/******** QUERY *********/
+CREATE EXTENSION IF NOT EXISTS pageinspect WITH SCHEMA dave_stokes VERSION '1.13' CASCADE
+/************************/
+
+CREATE EXTENSION
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('ex02'::text, 0::bigint))
+/************************/
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex02'::text, 0::bigint))
+/************************/
+
+ lp | t_ctid | t_data 
+----+--------+--------
+  1 | (0,1)  | \x0100
+  2 | (0,2)  | \x0200
+  3 | (0,3)  | \x0300
+  4 | (0,4)  | \x0400
+  5 | (0,5)  | \x0500
+  6 | (0,6)  | \x0600
+  7 | (0,7)  | \x0700
+  8 | (0,8)  | \x0800
+  9 | (0,9)  | \x0900
+ 10 | (0,10) | \x0a00
+(10 rows)
+
+/******** QUERY *********/
+SELECT lp, t_ctid, t_data FROM dave_stokes.heap_page_items(dave_stokes.get_raw_page('dave_stokes.ex02'::text, 0::bigint))
+/************************/
+
+ lp | t_ctid | t_data 
+----+--------+--------
+  1 | (0,1)  | \x0100
+  2 | (0,2)  | \x0200
+  3 | (0,3)  | \x0300
+  4 | (0,4)  | \x0400
+  5 | (0,5)  | \x0500
+  6 | (0,6)  | \x0600
+  7 | (0,7)  | \x0700
+  8 | (0,8)  | \x0800
+  9 | (0,9)  | \x0900
+ 10 | (0,10) | \x0a00
+(10 rows)
+
+/******** QUERY *********/
+SELECT lp, lp_off, lp_len, t_attrs FROM dave_stokes.heap_page_item_attrs(dave_stokes.get_raw_page('dave_stokes.ex02'::text, 0::bigint),'pg_class'::regclass) LIMIT 3
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.page_header(dave_stokes.get_raw_page('dave_stokes.ex02'::text,0::bigint))
+/************************/
+
+    lsn    | checksum | flags | lower | upper | special | pagesize | version | prune_xid 
+-----------+----------+-------+-------+-------+---------+----------+---------+-----------
+ 0/B9917A0 |        0 |     0 |    64 |  7872 |    8192 |     8192 |       4 |         0
+(1 row)
+
