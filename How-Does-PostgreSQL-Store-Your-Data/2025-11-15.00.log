@@ -1,0 +1,171 @@
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+ temp_tablespaces 
+------------------
+ 
+(1 row)
+
+/******** QUERY *********/
+SET SESSION temp_tablespaces TO stokerpostgresql_blogspot_com_temp
+/************************/
+
+SET
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+          temp_tablespaces          
+------------------------------------
+ stokerpostgresql_blogspot_com_temp
+(1 row)
+
+/******** QUERY *********/
+SHOW default_tablespace
+/************************/
+
+ default_tablespace 
+--------------------
+ 
+(1 row)
+
+                                                                                                      List of databases
+             Name              |             Owner             | Encoding | Locale Provider |   Collate   |    Ctype    | Locale | ICU Rules | Access privileges |  Size   |             Tablespace             | Description 
+-------------------------------+-------------------------------+----------+-----------------+-------------+-------------+--------+-----------+-------------------+---------+------------------------------------+-------------
+ stokerpostgresql_blogspot_com | stokerpostgresql_blogspot_com | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 | NULL   | NULL      | NULL              | 7998 kB | stokerpostgresql_blogspot_com_data | NULL
+(1 row)
+
+/******** QUERY *********/
+SHOW data_directory
+/************************/
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS dave_stokes.ex01
+(
+    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL DEFAULT 0::smallint,
+    second_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_second_column NOT NULL DEFAULT 0::smallint
+)
+TABLESPACE stokerpostgresql_blogspot_com_data
+/************************/
+
+CREATE TABLE
+                                                  List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |  Size   | Description 
+-------------+------+-------+-------------------------------+-------------+---------------+---------+-------------
+ dave_stokes | ex01 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 0 bytes | NULL
+(1 row)
+
+                                              Table "dave_stokes.ex01"
+    Column     |   Type   | Collation | Nullable |   Default   | Storage | Compression | Stats target | Description 
+---------------+----------+-----------+----------+-------------+---------+-------------+--------------+-------------
+ first_column  | smallint |           | not null | 0::smallint | plain   |             |              | 
+ second_column | smallint |           | not null | 0::smallint | plain   |             |              | 
+Not-null constraints:
+    "nn_first_column" NOT NULL "first_column"
+    "nn_second_column" NOT NULL "second_column"
+Access method: heap
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO dave_stokes.first_table (first_column, second_column) VALUES (1,1) RETURN OLD.first_column, NEW.first_column, OLD.second_column, NEW.second_column
+/************************/
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO dave_stokes.first_table (first_column, second_column) VALUES (1,1) RETURNING OLD.first_column, NEW.first_column, OLD.second_column, NEW.second_column
+/************************/
+
+/******** QUERY *********/
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO dave_stokes.ex01 (first_column, second_column) VALUES (1,1) RETURNING OLD.first_column, NEW.first_column, OLD.second_column, NEW.second_column
+/************************/
+
+                                                QUERY PLAN                                                 
+-----------------------------------------------------------------------------------------------------------
+ Insert on dave_stokes.ex01  (cost=0.00..0.01 rows=1 width=4) (actual time=1.136..1.137 rows=1.00 loops=1)
+   Output: old.first_column, new.first_column, old.second_column, new.second_column
+   Buffers: shared dirtied=1 written=1
+   WAL: records=1 bytes=59
+   ->  Result  (cost=0.00..0.01 rows=1 width=4) (actual time=0.002..0.003 rows=1.00 loops=1)
+         Output: '1'::smallint, '1'::smallint
+ Query Identifier: 7392707276889285398
+ Planning:
+   Memory: used=10kB  allocated=16kB
+ Planning Time: 0.118 ms
+ Execution Time: 1.168 ms
+(11 rows)
+
+/******** QUERY *********/
+SELECT * FROM dave_stokes.pg_stat_statements WHERE queryid = 7392707276889285398
+/************************/
+
+ userid | dbid | toplevel | queryid | query | plans | total_plan_time | min_plan_time | max_plan_time | mean_plan_time | stddev_plan_time | calls | total_exec_time | min_exec_time | max_exec_time | mean_exec_time | stddev_exec_time | rows | shared_blks_hit | shared_blks_read | shared_blks_dirtied | shared_blks_written | local_blks_hit | local_blks_read | local_blks_dirtied | local_blks_written | temp_blks_read | temp_blks_written | shared_blk_read_time | shared_blk_write_time | local_blk_read_time | local_blk_write_time | temp_blk_read_time | temp_blk_write_time | wal_records | wal_fpi | wal_bytes | wal_buffers_full | jit_functions | jit_generation_time | jit_inlining_count | jit_inlining_time | jit_optimization_count | jit_optimization_time | jit_emission_count | jit_emission_time | jit_deform_count | jit_deform_time | parallel_workers_to_launch | parallel_workers_launched | stats_since | minmax_stats_since 
+--------+------+----------+---------+-------+-------+-----------------+---------------+---------------+----------------+------------------+-------+-----------------+---------------+---------------+----------------+------------------+------+-----------------+------------------+---------------------+---------------------+----------------+-----------------+--------------------+--------------------+----------------+-------------------+----------------------+-----------------------+---------------------+----------------------+--------------------+---------------------+-------------+---------+-----------+------------------+---------------+---------------------+--------------------+-------------------+------------------------+-----------------------+--------------------+-------------------+------------------+-----------------+----------------------------+---------------------------+-------------+--------------------
+(0 rows)
+
+                                List of schemas
+    Name     |             Owner             | Access privileges | Description 
+-------------+-------------------------------+-------------------+-------------
+ dave_stokes | stokerpostgresql_blogspot_com | NULL              | NULL
+(1 row)
+
+                List of schemas
+ Name | Owner | Access privileges | Description 
+------+-------+-------------------+-------------
+(0 rows)
+
+                List of schemas
+ Name | Owner | Access privileges | Description 
+------+-------+-------------------+-------------
+(0 rows)
+
+                                         List of schemas
+             Name              |             Owner             | Access privileges | Description 
+-------------------------------+-------------------------------+-------------------+-------------
+ stokerpostgresql_blogspot_com | stokerpostgresql_blogspot_com | NULL              | NULL
+(1 row)
+
+/******** QUERY *********/
+ANALYZE (VERBOSE true, SKIP_LOCKED false) dave_stokes.ex01
+/************************/
+
+ANALYZE
+/******** QUERY *********/
+SELECT first_column, second_column FROM dave_stokes.ex01
+/************************/
+
+ first_column | second_column 
+--------------+---------------
+            1 |             1
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_class WHERE relname = 'ex01'::text
+/************************/
+
+  oid  | relname | relnamespace | reltype | reloftype | relowner | relam | relfilenode | reltablespace | relpages | reltuples | relallvisible | relallfrozen | reltoastrelid | relhasindex | relisshared | relpersistence | relkind | relnatts | relchecks | relhasrules | relhastriggers | relhassubclass | relrowsecurity | relforcerowsecurity | relispopulated | relreplident | relispartition | relrewrite | relfrozenxid | relminmxid | relacl | reloptions | relpartbound 
+-------+---------+--------------+---------+-----------+----------+-------+-------------+---------------+----------+-----------+---------------+--------------+---------------+-------------+-------------+----------------+---------+----------+-----------+-------------+----------------+----------------+----------------+---------------------+----------------+--------------+----------------+------------+--------------+------------+--------+------------+--------------
+ 61649 | ex01    |        61603 |   61651 |         0 |    61594 |     2 |       61649 |             0 |        1 |         1 |             0 |            0 |             0 | f           | f           | p              | r       |        2 |         0 | f           | f              | f              | f              | f                   | t              | d            | f              |          0 |         1302 |          1 | NULL   | NULL       | NULL
+(1 row)
+
+               Objects in extension "pg_stat_statements"
+                          Object description                           
+-----------------------------------------------------------------------
+ function dave_stokes.pg_stat_statements(boolean)
+ function dave_stokes.pg_stat_statements_info()
+ function dave_stokes.pg_stat_statements_reset(oid,oid,bigint,boolean)
+ type dave_stokes.pg_stat_statements
+ type dave_stokes.pg_stat_statements[]
+ type dave_stokes.pg_stat_statements_info
+ type dave_stokes.pg_stat_statements_info[]
+ view dave_stokes.pg_stat_statements
+ view dave_stokes.pg_stat_statements_info
+(9 rows)
+
+      Objects in extension "plpgsql"
+            Object description             
+-------------------------------------------
+ function plpgsql_call_handler()
+ function plpgsql_inline_handler(internal)
+ function plpgsql_validator(oid)
+ language plpgsql
+(4 rows)
+

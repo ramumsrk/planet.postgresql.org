@@ -1,0 +1,88 @@
+/******** QUERY *********/
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'dave_stokes'
+/************************/
+
+       table_name        
+-------------------------
+ pg_stat_statements_info
+ pg_stat_statements
+ ex01
+ ex02
+(4 rows)
+
+/******** QUERY *********/
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'dave_stokes'
+/************************/
+
+       table_name        
+-------------------------
+ pg_stat_statements_info
+ pg_stat_statements
+ ex01
+ ex02
+(4 rows)
+
+                                                                                                     List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |    Size    |                                                  Description                                                   
+-------------+------+-------+-------------------------------+-------------+---------------+------------+----------------------------------------------------------------------------------------------------------------
+ dave_stokes | ex02 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 8192 bytes | Refer to section CTIDs in https://stokerpostgresql.blogspot.com/2025/01/now-that-we-know-where-postgresql.html
+(1 row)
+
+                                                   List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |    Size    | Description 
+-------------+------+-------+-------------------------------+-------------+---------------+------------+-------------
+ dave_stokes | ex01 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 8192 bytes | 
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_class WHERE relname = 'ex01'
+/************************/
+
+  oid  | relname | relnamespace | reltype | reloftype | relowner | relam | relfilenode | reltablespace | relpages | reltuples | relallvisible | relallfrozen | reltoastrelid | relhasindex | relisshared | relpersistence | relkind | relnatts | relchecks | relhasrules | relhastriggers | relhassubclass | relrowsecurity | relforcerowsecurity | relispopulated | relreplident | relispartition | relrewrite | relfrozenxid | relminmxid | relacl | reloptions | relpartbound 
+-------+---------+--------------+---------+-----------+----------+-------+-------------+---------------+----------+-----------+---------------+--------------+---------------+-------------+-------------+----------------+---------+----------+-----------+-------------+----------------+----------------+----------------+---------------------+----------------+--------------+----------------+------------+--------------+------------+--------+------------+--------------
+ 61649 | ex01    |        61603 |   61651 |         0 |    61594 |     2 |       61649 |             0 |        1 |         1 |             0 |            0 |             0 | f           | f           | p              | r       |        2 |         0 | f           | f              | f              | f              | f                   | t              | d            | f              |          0 |         1302 |          1 |        |            | 
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM information_schema.tables WHERE table_schema = 'dave_stokes' AND table_name = 'ex01'
+/************************/
+
+         table_catalog         | table_schema | table_name | table_type | self_referencing_column_name | reference_generation | user_defined_type_catalog | user_defined_type_schema | user_defined_type_name | is_insertable_into | is_typed | commit_action 
+-------------------------------+--------------+------------+------------+------------------------------+----------------------+---------------------------+--------------------------+------------------------+--------------------+----------+---------------
+ stokerpostgresql_blogspot_com | dave_stokes  | ex01       | BASE TABLE |                              |                      |                           |                          |                        | YES                | NO       | 
+(1 row)
+
+/******** QUERY *********/
+SHOW data_directory
+/************************/
+
+                                                   List of tables
+   Schema    | Name | Type  |             Owner             | Persistence | Access method |    Size    | Description 
+-------------+------+-------+-------------------------------+-------------+---------------+------------+-------------
+ dave_stokes | ex01 | table | stokerpostgresql_blogspot_com | permanent   | heap          | 8192 bytes | 
+(1 row)
+
+                                              Table "dave_stokes.ex01"
+    Column     |   Type   | Collation | Nullable |   Default   | Storage | Compression | Stats target | Description 
+---------------+----------+-----------+----------+-------------+---------+-------------+--------------+-------------
+ first_column  | smallint |           | not null | 0::smallint | plain   |             |              | 
+ second_column | smallint |           | not null | 0::smallint | plain   |             |              | 
+Not-null constraints:
+    "nn_first_column" NOT NULL "first_column"
+    "nn_second_column" NOT NULL "second_column"
+Access method: heap
+
+/******** QUERY *********/
+SELECT first_column, second_column FROM dave_stokes.ex01
+/************************/
+
+ first_column | second_column 
+--------------+---------------
+            1 |             1
+(1 row)
+
+/******** QUERY *********/
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY dave_stokes.ex01
+/************************/
+
+ANALYZE
