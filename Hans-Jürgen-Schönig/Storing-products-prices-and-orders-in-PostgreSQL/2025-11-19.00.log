@@ -1,0 +1,400 @@
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1393
+(1 row)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+      current_database       |            user             |        current_user         |        session_user         |        current_role         |       current_schema        | current_date |     current_time      |        current_timestamp         
+-----------------------------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+--------------+-----------------------+----------------------------------
+ www_cybertec_postgresql_com | www_cybertec_postgresql_com | www_cybertec_postgresql_com | www_cybertec_postgresql_com | www_cybertec_postgresql_com | www_cybertec_postgresql_com | 2025-11-19   | 10:31:22.363978+05:30 | 2025-11-19 10:31:22.363978+05:30
+(1 row)
+
+                                                       List of schemas
+            Name             |            Owner            |           Access privileges            |      Description       
+-----------------------------+-----------------------------+----------------------------------------+------------------------
+ julian_markwort             | www_cybertec_postgresql_com | NULL                                   | NULL
+ public                      | pg_database_owner           | pg_database_owner=UC/pg_database_owner+| standard public schema
+                             |                             | =U/pg_database_owner                   | 
+ www_cybertec_postgresql_com | www_cybertec_postgresql_com | NULL                                   | NULL
+(3 rows)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS hans_jürgen_schönig AUTHORIZATION www_cybertec_postgresql_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+COMMENT ON SCHEMA hans_jürgen_schönig IS 'Use this schema to try PostgreSQL https://www.postgresql.org blog https://www.cybertec-postgresql.com/en/postgresql-blog/ posts by Mr. Hans-Jürgen Schönig https://www.cybertec-postgresql.com/en/author/hans-juergen_schoenig/ on https://www.cybertec-postgresql.com/'
+/************************/
+
+COMMENT
+                                                                                                                                                                 List of schemas
+        Name         |            Owner            | Access privileges |                                                                                                                               Description                                                                                                                               
+---------------------+-----------------------------+-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ hans_jürgen_schönig | www_cybertec_postgresql_com | NULL              | Use this schema to try PostgreSQL https://www.postgresql.org blog https://www.cybertec-postgresql.com/en/postgresql-blog/ posts by Mr. Hans-Jürgen Schönig https://www.cybertec-postgresql.com/en/author/hans-juergen_schoenig/ on https://www.cybertec-postgresql.com/
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS hans_jürgen_schönig.products
+(
+    product_number TEXT STORAGE default COMPRESSION default,
+    product_name TEXT STORAGE default COMPRESSION default,
+    product_price NUMERIC(10,2) STORAGE default COMPRESSION default
+)
+TABLESPACE www_cybertec_postgresql_com_data
+/************************/
+
+CREATE TABLE
+/******** QUERY *********/
+COMMENT ON TABLE hans_jürgen_schönig.products IS 'Table used in https://www.cybertec-postgresql.com/en/storing-products-prices-and-orders-in-postgresql/'
+/************************/
+
+COMMENT
+                                                                                                      List of tables
+       Schema        |   Name   | Type  |            Owner            | Persistence | Access method |    Size    |                                              Description                                               
+---------------------+----------+-------+-----------------------------+-------------+---------------+------------+--------------------------------------------------------------------------------------------------------
+ hans_jürgen_schönig | products | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | Table used in https://www.cybertec-postgresql.com/en/storing-products-prices-and-orders-in-postgresql/
+(1 row)
+
+                                         Table "hans_jürgen_schönig.products"
+     Column     |     Type      | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+---------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ product_number | text          |           |          |         | extended |             |              | 
+ product_name   | text          |           |          |         | extended |             |              | 
+ product_price  | numeric(10,2) |           |          |         | main     |             |              | 
+Access method: heap
+
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.products ADD CONSTRAINT nn_product_name NOT NULL
+/************************/
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+ROLLBACK
+/******** QUERY *********/
+BEGIN WORK
+/************************/
+
+BEGIN
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1394
+(1 row)
+
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1394
+(1 row)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS hans_jürgen_schönig AUTHORIZATION www_cybertec_postgresql_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+COMMENT ON SCHEMA hans_jürgen_schönig IS NULL
+/************************/
+
+COMMENT
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS hans_jürgen_schönig.products
+(
+product_number TEXT STORAGE default COMPRESSION default,
+product_name TEXT STORAGE default COMPRESSION default,
+product_price DECIMAL(10,2) STORAGE default COMPRESSION default
+)
+TABLESPACE www_cybertec_postgresql_com_data
+/************************/
+
+CREATE TABLE
+                                                        List of tables
+       Schema        |   Name   | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+----------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | products | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.products ADD CONSTRAINT pk_product_number PRIMARY KEY (product_number) USING INDEX TABLESPACE www_cybertec_postgresql_com_index
+/************************/
+
+ALTER TABLE
+                                                        List of tables
+       Schema        |   Name   | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+----------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | products | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+                                         Table "hans_jürgen_schönig.products"
+     Column     |     Type      | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+---------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ product_number | text          |           | not null |         | extended |             |              | 
+ product_name   | text          |           |          |         | extended |             |              | 
+ product_price  | numeric(10,2) |           |          |         | main     |             |              | 
+Indexes:
+    "pk_product_number" PRIMARY KEY, btree (product_number), tablespace "www_cybertec_postgresql_com_index"
+Not-null constraints:
+    "products_product_number_not_null" NOT NULL "product_number"
+Access method: heap
+
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.products ADD CONSTRAINT nn_product_name NOT NULL product_name
+/************************/
+
+ALTER TABLE
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.products ADD CONSTRAINT nn_product_price NOT NULL product_price
+/************************/
+
+ALTER TABLE
+                                         Table "hans_jürgen_schönig.products"
+     Column     |     Type      | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+---------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ product_number | text          |           | not null |         | extended |             |              | 
+ product_name   | text          |           | not null |         | extended |             |              | 
+ product_price  | numeric(10,2) |           | not null |         | main     |             |              | 
+Indexes:
+    "pk_product_number" PRIMARY KEY, btree (product_number), tablespace "www_cybertec_postgresql_com_index"
+Not-null constraints:
+    "products_product_number_not_null" NOT NULL "product_number"
+    "nn_product_name" NOT NULL "product_name"
+    "nn_product_price" NOT NULL "product_price"
+Access method: heap
+
+/******** QUERY *********/
+INSERT INTO hans_jürgen_schönig.products VALUES ('PROD001', 'Bread', '3.50'), ('PROD002', 'Sausage', '6.59'), ('PROD003', 'Cheese', '5.79')
+/************************/
+
+INSERT 0 3
+/******** QUERY *********/
+SELECT product_number, product_name, product_price FROM hans_jürgen_schönig.products
+/************************/
+
+ product_number | product_name | product_price 
+----------------+--------------+---------------
+ PROD001        | Bread        |          3.50
+ PROD002        | Sausage      |          6.59
+ PROD003        | Cheese       |          5.79
+(3 rows)
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS hans_jürgen_schönig.sales
+(
+sales_time TIMESTAMP WITH TIME ZONE STORAGE default COMPRESSION default,
+product_number TEXT STORAGE default COMPRESSION default CONSTRAINT fk_product_number REFERENCES hans_jürgen_schönig.products (product_number) ON DELETE CASCADE ON UPDATE CASCADE,
+units SMALLINT STORAGE default COMPRESSION default
+)
+TABLESPACE www_cybertec_postgresql_com_data
+/************************/
+
+CREATE TABLE
+                                                       List of tables
+       Schema        | Name  | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+-------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | sales | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+                                                Table "hans_jürgen_schönig.sales"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ sales_time     | timestamp with time zone |           |          |         | plain    |             |              | 
+ product_number | text                     |           |          |         | extended |             |              | 
+ units          | smallint                 |           |          |         | plain    |             |              | 
+Foreign-key constraints:
+    "fk_product_number" FOREIGN KEY (product_number) REFERENCES "hans_jürgen_schönig".products(product_number) ON UPDATE CASCADE ON DELETE CASCADE
+Access method: heap
+
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.sales ADD CONSTRAINT nn_sales_time NOT NULL sales_time
+/************************/
+
+ALTER TABLE
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.sales ADD CONSTRAINT nn_units NOT NULL units
+/************************/
+
+ALTER TABLE
+/******** QUERY *********/
+ALTER TABLE IF EXISTS ONLY hans_jürgen_schönig.sales ADD CONSTRAINT nn_product_number NOT NULL product_number
+/************************/
+
+ALTER TABLE
+                                                       List of tables
+       Schema        | Name  | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+-------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | sales | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+                                                Table "hans_jürgen_schönig.sales"
+     Column     |           Type           | Collation | Nullable | Default | Storage  | Compression | Stats target | Description 
+----------------+--------------------------+-----------+----------+---------+----------+-------------+--------------+-------------
+ sales_time     | timestamp with time zone |           | not null |         | plain    |             |              | 
+ product_number | text                     |           | not null |         | extended |             |              | 
+ units          | smallint                 |           | not null |         | plain    |             |              | 
+Foreign-key constraints:
+    "fk_product_number" FOREIGN KEY (product_number) REFERENCES "hans_jürgen_schönig".products(product_number) ON UPDATE CASCADE ON DELETE CASCADE
+Not-null constraints:
+    "nn_sales_time" NOT NULL "sales_time"
+    "nn_product_number" NOT NULL "product_number"
+    "nn_units" NOT NULL "units"
+Access method: heap
+
+/******** QUERY *********/
+INSERT INTO hans_jürgen_schönig.sales VALUES ('2025-09-01 14:30', 'PROD001', 8), ('2025-09-02 19:46', 'PROD002', 5), ('2025-09-14 07:32', 'PROD003', 7)
+/************************/
+
+INSERT 0 3
+/******** QUERY *********/
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY hans_jürgen_schönig.sales
+/************************/
+
+ANALYZE
+/******** QUERY *********/
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY hans_jürgen_schönig.products
+/************************/
+
+ANALYZE
+/******** QUERY *********/
+SELECT * FROM hans_jürgen_schönig.sales
+/************************/
+
+        sales_time         | product_number | units 
+---------------------------+----------------+-------
+ 2025-09-01 14:30:00+05:30 | PROD001        |     8
+ 2025-09-02 19:46:00+05:30 | PROD002        |     5
+ 2025-09-14 07:32:00+05:30 | PROD003        |     7
+(3 rows)
+
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+ temp_tablespaces 
+------------------
+ 
+(1 row)
+
+/******** QUERY *********/
+SET SESSION temp_tablespaces TO www_cybertec_postgresql_com_temp
+/************************/
+
+SET
+/******** QUERY *********/
+SHOW temp_tablespaces
+/************************/
+
+         temp_tablespaces         
+----------------------------------
+ www_cybertec_postgresql_com_temp
+(1 row)
+
+/******** QUERY *********/
+CREATE TABLE IF NOT EXISTS hans_jürgen_schönig.sales_one
+(
+sale_time TIMESTAMP WITH TIME ZONE STORAGE default COMPRESSION default CONSTRAINT nn_sale_time NOT NULL DEFAULT pg_catalog.now(),
+product_number TEXT STORAGE default COMPRESSION default CONSTRAINT nn_product_number NOT NULL,
+product_name TEXT STORAGE default COMPRESSION default CONSTRAINT nn_product_name NOT NULL DEFAULT ''::text,
+product_unit_price DECIMAL(10,2) STORAGE default COMPRESSION default CONSTRAINT nn_product_unit_price NOT NULL,
+product_units NUMERIC(10,2) STORAGE default COMPRESSION default CONSTRAINT nn_product_units NOT NULL
+)
+TABLESPACE www_cybertec_postgresql_com_data
+/************************/
+
+CREATE TABLE
+                                                         List of tables
+       Schema        |   Name    | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+-----------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | sales_one | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+                                                 Table "hans_jürgen_schönig.sales_one"
+       Column       |           Type           | Collation | Nullable | Default  | Storage  | Compression | Stats target | Description 
+--------------------+--------------------------+-----------+----------+----------+----------+-------------+--------------+-------------
+ sale_time          | timestamp with time zone |           | not null | now()    | plain    |             |              | 
+ product_number     | text                     |           | not null |          | extended |             |              | 
+ product_name       | text                     |           | not null | ''::text | extended |             |              | 
+ product_unit_price | numeric(10,2)            |           | not null |          | main     |             |              | 
+ product_units      | numeric(10,2)            |           | not null |          | main     |             |              | 
+Not-null constraints:
+    "nn_sale_time" NOT NULL "sale_time"
+    "nn_product_number" NOT NULL "product_number"
+    "nn_product_name" NOT NULL "product_name"
+    "nn_product_unit_price" NOT NULL "product_unit_price"
+    "nn_product_units" NOT NULL "product_units"
+Access method: heap
+
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1394
+(1 row)
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+COMMIT
+                                                         List of tables
+       Schema        |   Name    | Type  |            Owner            | Persistence | Access method |    Size    | Description 
+---------------------+-----------+-------+-----------------------------+-------------+---------------+------------+-------------
+ hans_jürgen_schönig | sales_one | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | NULL
+(1 row)
+
+/******** QUERY *********/
+COMMENT ON TABLE hans_jürgen_schönig.sales_one IS 'Table created and used in section "Handling historic data properly" of blog https://www.cybertec-postgresql.com/en/storing-products-prices-and-orders-in-postgresql/'
+/************************/
+
+COMMENT
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1395
+(1 row)
+
+                                                                                                                                     List of tables
+       Schema        |   Name    | Type  |            Owner            | Persistence | Access method |    Size    |                                                                             Description                                                                              
+---------------------+-----------+-------+-----------------------------+-------------+---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ hans_jürgen_schönig | sales_one | table | www_cybertec_postgresql_com | permanent   | heap          | 8192 bytes | Table created and used in section "Handling historic data properly" of blog https://www.cybertec-postgresql.com/en/storing-products-prices-and-orders-in-postgresql/
+(1 row)
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+COMMIT
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1396
+(1 row)
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+COMMIT
