@@ -1,0 +1,3 @@
+[PostgreSQL](https://www.postgresql.org) [blog](https://www.cybertec-postgresql.com/en/postgresql-blog/) posts by [Hans-Jürgen Schönig](https://www.cybertec-postgresql.com/en/author/hans-juergen_schoenig/) on [CYBERTEC](https://www.cybertec-postgresql.com/)
+
+* [Storing products, prices and orders in PostgreSQL](https://www.cybertec-postgresql.com/en/storing-products-prices-and-orders-in-postgresql/)
