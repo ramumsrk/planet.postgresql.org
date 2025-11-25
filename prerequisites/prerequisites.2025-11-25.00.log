@@ -1,0 +1,360 @@
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1447
+(1 row)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+ current_database |   user   | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+------------------+----------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ postgres         | postgres | postgres     | postgres     | postgres     | public         | 2025-11-25   | 09:23:10.241675+05:30 | 2025-11-25 09:23:10.241675+05:30
+(1 row)
+
+         Connection Information
+      Parameter       |      Value      
+----------------------+-----------------
+ Database             | postgres
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 61840
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+CREATE ROLE www_sqlservercentral_com
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOINHERIT
+NOBYPASSRLS
+NOREPLICATION
+IN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_stats
+PASSWORD 'www_sqlservercentral_com'
+CONNECTION LIMIT -1
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_auth WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+ROLLBACK
+/******** QUERY *********/
+SELECT TXID_CURRENT()
+/************************/
+
+ txid_current 
+--------------
+         1448
+(1 row)
+
+/******** QUERY *********/
+CREATE ROLE www_sqlservercentral_com
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOINHERIT
+NOBYPASSRLS
+NOREPLICATION
+IN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_stats
+PASSWORD 'www_sqlservercentral_com'
+CONNECTION LIMIT -1
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+  oid  |         rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit |                                                              rolpassword                                                              |       rolvaliduntil       
+-------+--------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------
+ 78557 | www_sqlservercentral_com | f        | f          | f             | f           | t           | f              | f            |           -1 | SCRAM-SHA-256$4096:J+Ovi8Mx1GWPh04/Cr47Cw==$BwfmR/K+CwoZUDjiq0qsfQPB7SmOejJk8Y5obnc88KU=:98JyFB7zzsB0TXTMHIGIDMtamyRjTw1RSgqavG3sq6U= | 2025-12-31 23:59:59+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_role WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+/******** QUERY *********/
+END TRANSACTION
+/************************/
+
+ROLLBACK
+/******** QUERY *********/
+CREATE ROLE www_sqlservercentral_com
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOINHERIT
+NOBYPASSRLS
+NOREPLICATION
+IN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_stats
+PASSWORD 'www_sqlservercentral_com'
+CONNECTION LIMIT -1
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+  oid  |         rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit |                                                              rolpassword                                                              |       rolvaliduntil       
+-------+--------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------
+ 78561 | www_sqlservercentral_com | f        | f          | f             | f           | t           | f              | f            |           -1 | SCRAM-SHA-256$4096:JQO8SizopRTyYmKgUKX5bw==$Z66A11+VTy/jDuWrquzq34KfvmoGi70KELy/FNySj8M=:qvxe2ZE1iEAlzkBOLOvZAcb3pz290LYnLIUaFfXaufQ= | 2025-12-31 23:59:59+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+         rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword |       rolvaliduntil       | rolbypassrls | rolconfig |  oid  
+--------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------------------+--------------+-----------+-------
+ www_sqlservercentral_com | f        | f          | f             | f           | t           | f              |           -1 | ********    | 2025-12-31 23:59:59+05:30 | f            | NULL      | 78561
+(1 row)
+
+/******** QUERY *********/
+GRANT pg_read_all_settings, pg_read_server_files, pg_read_all_stats TO www_sqlservercentral_com GRANTED BY postgres
+/************************/
+
+GRANT ROLE
+/******** QUERY *********/
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'
+/************************/
+
+/******** QUERY *********/
+END WORK
+/************************/
+
+ROLLBACK
+/******** QUERY *********/
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'
+/************************/
+
+/******** QUERY *********/
+CREATE ROLE www_sqlservercentral_com
+WITH
+LOGIN
+NOSUPERUSER
+NOCREATEDB
+NOINHERIT
+NOBYPASSRLS
+NOREPLICATION
+IN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_stats
+PASSWORD 'www_sqlservercentral_com'
+CONNECTION LIMIT -1
+VALID UNTIL '2025-12-31 23:59:59+05:30'
+/************************/
+
+CREATE ROLE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+  oid  |         rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolbypassrls | rolconnlimit |                                                              rolpassword                                                              |       rolvaliduntil       
+-------+--------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------
+ 78565 | www_sqlservercentral_com | f        | f          | f             | f           | t           | f              | f            |           -1 | SCRAM-SHA-256$4096:XN1xo0edHyu1K/saVGum0g==$PpLCP7BSA0J6VIYOOT78zFs5CS1VcGCAdPmjLzQl43M=:xV36prrR3JJ53qGE8IOEsHq2Up9A15v/GiY+xznTJ3o= | 2025-12-31 23:59:59+05:30
+(1 row)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_sqlservercentral_com'
+/************************/
+
+         rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword |       rolvaliduntil       | rolbypassrls | rolconfig |  oid  
+--------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------------------+--------------+-----------+-------
+ www_sqlservercentral_com | f        | f          | f             | f           | t           | f              |           -1 | ********    | 2025-12-31 23:59:59+05:30 | f            | NULL      | 78565
+(1 row)
+
+/******** QUERY *********/
+END TRANSACTION
+/************************/
+
+COMMIT
+/******** QUERY *********/
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE www_sqlservercentral_com_index OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_index/'
+
+;
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+CREATE TABLESPACE www_sqlservercentral_com_temp OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_temp/'
+/************************/
+
+CREATE TABLESPACE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE name LIKE 'www_sqlservercentral_com_%'
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'www_sqlservercentral_com_%'
+/************************/
+
+  oid  |            spcname             | spcowner | spcacl | spcoptions 
+-------+--------------------------------+----------+--------+------------
+ 78569 | www_sqlservercentral_com_data  |    78565 | NULL   | NULL
+ 78570 | www_sqlservercentral_com_index |    78565 | NULL   | NULL
+ 78571 | www_sqlservercentral_com_temp  |    78565 | NULL   | NULL
+(3 rows)
+
+/******** QUERY *********/
+CREATE DATABASE www_sqlservercentral_com
+WITH
+OWNER = www_sqlservercentral_com
+TABLESPACE = www_sqlservercentral_com_data
+ALLOW_CONNECTIONS = true
+CONNECTION LIMIT = -1
+IS_TEMPLATE = false
+TEMPLATE = template0
+ENCODING = UTF8
+LOCALE_CTYPE = 'C.UTF-8'
+LOCALE_COLLATE = 'C.UTF-8'
+LOCALE_PROVIDER = libc
+COLLATION_VERSION = '2.42'
+BUILTIN_LOCALE = pg_unicode_fast
+ICU_LOCALE = UTF8
+/************************/
+
+/******** QUERY *********/
+CREATE DATABASE www_sqlservercentral_com
+WITH
+OWNER = www_sqlservercentral_com
+TABLESPACE = www_sqlservercentral_com_data
+IS_TEMPLATE = false
+TEMPLATE = template0
+CONNECTION LIMIT = -1
+ALLOW_CONNECTIONS = true
+ENCODING = UTF8
+LOCALE = 'C.UTF-8'
+LC_COLLATE = 'C.UTF-8'
+LC_CTYPE = 'C.UTF-8'
+LOCALE_PROVIDER = libc
+COLLATION_VERSION = '2.42'
+BUILTIN_LOCALE = pg_unicode_fast
+ICU_LOCALE = UTF8
+/************************/
+
+/******** QUERY *********/
+CREATE DATABASE www_sqlservercentral_com
+WITH
+OWNER = www_sqlservercentral_com
+TABLESPACE = www_sqlservercentral_com_data
+IS_TEMPLATE = false
+TEMPLATE = template0
+CONNECTION LIMIT = -1
+ALLOW_CONNECTIONS = true
+ENCODING = UTF8
+LOCALE = 'C.UTF-8'
+LC_COLLATE = 'C.UTF-8'
+LC_CTYPE = 'C.UTF-8'
+LOCALE_PROVIDER = libc
+COLLATION_VERSION = '2.42'
+ICU_LOCALE = UTF8
+/************************/
+
+/******** QUERY *********/
+CREATE DATABASE www_sqlservercentral_com
+WITH
+OWNER = www_sqlservercentral_com
+TABLESPACE = www_sqlservercentral_com_data
+IS_TEMPLATE = false
+TEMPLATE = template0
+CONNECTION LIMIT = -1
+ALLOW_CONNECTIONS = true
+ENCODING = UTF8
+LOCALE = 'C.UTF-8'
+LC_COLLATE = 'C.UTF-8'
+LC_CTYPE = 'C.UTF-8'
+LOCALE_PROVIDER = libc
+COLLATION_VERSION = '2.42'
+/************************/
+
+CREATE DATABASE
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_extension WHERE name = 'pg_stat_statements'
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_extension WHERE extname = 'pg_stat_statements'
+/************************/
+
+ oid | extname | extowner | extnamespace | extrelocatable | extversion | extconfig | extcondition 
+-----+---------+----------+--------------+----------------+------------+-----------+--------------
+(0 rows)
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_available_extensions WHERE extname = 'pg_stat_statements'
+/************************/
+
+/******** QUERY *********/
+SELECT * FROM pg_catalog.pg_available_extensions WHERE name = 'pg_stat_statements'
+/************************/
+
+        name        | default_version | installed_version |                                comment                                 
+--------------------+-----------------+-------------------+------------------------------------------------------------------------
+ pg_stat_statements | 1.12            | NULL              | track planning and execution statistics of all SQL statements executed
+(1 row)
+
+/******** QUERY *********/
+CREATE SCHEMA IF NOT EXISTS chandan_shukla AUTHORIZATION www_sqlservercentral_com
+/************************/
+
+CREATE SCHEMA
+/******** QUERY *********/
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA chandan_shukla VERSION '1.12' CASCADE
+/************************/
+
+CREATE EXTENSION
+             Connection Information
+      Parameter       |          Value           
+----------------------+--------------------------
+ Database             | www_sqlservercentral_com
+ Client User          | postgres
+ Socket Directory     | /run/postgresql
+ Server Port          | 5432
+ Options              | 
+ Protocol Version     | 3.0
+ Password Used        | false
+ GSSAPI Authenticated | false
+ Backend PID          | 67210
+ SSL Connection       | false
+ Superuser            | on
+ Hot Standby          | off
+(12 rows)
+
+/******** QUERY *********/
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP
+/************************/
+
+     current_database     |   user   | current_user | session_user | current_role | current_schema | current_date |     current_time      |        current_timestamp         
+--------------------------+----------+--------------+--------------+--------------+----------------+--------------+-----------------------+----------------------------------
+ www_sqlservercentral_com | postgres | postgres     | postgres     | postgres     | public         | 2025-11-25   | 10:10:05.336934+05:30 | 2025-11-25 10:10:05.336934+05:30
+(1 row)
+
