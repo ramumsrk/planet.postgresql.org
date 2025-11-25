@@ -1,0 +1,94 @@
+\q
+\timing on
+\pset pager false
+\pset null NULL
+\pset pager_min_lines 1000
+SELECT TXID_CURRENT()\g
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP\gx
+\conninfo
+\e
+CREATE ROLE www_sqlservercentral_comWITHLOGINNOSUPERUSERNOCREATEDBNOINHERITNOBYPASSRLSNOREPLICATIONIN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_statsPASSWORD 'www_sqlservercentral_com'CONNECTION LIMIT -1VALID UNTIL '2025-12-31 23:59:59+05:30'\g
+SELECT * FROM pg_catalog.pg_auth WHERE rolname = 'www_sqlservercentral_com'\gx
+END WORK\g
+SELECT TXID_CURRENT()\g
+CREATE ROLE www_sqlservercentral_comWITHLOGINNOSUPERUSERNOCREATEDBNOINHERITNOBYPASSRLSNOREPLICATIONIN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_statsPASSWORD 'www_sqlservercentral_com'CONNECTION LIMIT -1VALID UNTIL '2025-12-31 23:59:59+05:30'\g
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'\gx
+SELECT * FROM pg_catalog.pg_role WHERE rolname = 'www_sqlservercentral_com'\gx
+END TRANSACTION\g
+CREATE ROLE www_sqlservercentral_comWITHLOGINNOSUPERUSERNOCREATEDBNOINHERITNOBYPASSRLSNOREPLICATIONIN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_statsPASSWORD 'www_sqlservercentral_com'CONNECTION LIMIT -1VALID UNTIL '2025-12-31 23:59:59+05:30'\g
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'\gx
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_sqlservercentral_com'\gx
+GRANT pg_read_all_settings, pg_read_server_files, pg_read_all_stats TO www_sqlservercentral_com GRANTED BY postgres\g
+\h CREATE DATABASE
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'\g
+END WORK\g
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'\g
+CREATE ROLE www_sqlservercentral_comWITHLOGINNOSUPERUSERNOCREATEDBNOINHERITNOBYPASSRLSNOREPLICATIONIN ROLE pg_read_all_settings, pg_read_server_files, pg_read_all_statsPASSWORD 'www_sqlservercentral_com'CONNECTION LIMIT -1VALID UNTIL '2025-12-31 23:59:59+05:30'\g
+SELECT * FROM pg_catalog.pg_authid WHERE rolname = 'www_sqlservercentral_com'\gx
+SELECT * FROM pg_catalog.pg_roles WHERE rolname = 'www_sqlservercentral_com'\gx
+END TRANSACTION\g
+\pset AUTOCOMMIT on
+\set AUTOCOMMIT true
+CREATE TABLESPACE www_sqlservercentral_com_data OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_data/'\g
+\e
+CREATE TABLESPACE www_sqlservercentral_com_index OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_index/';
+\e
+CREATE TABLESPACE www_sqlservercentral_com_temp OWNER www_sqlservercentral_com LOCATION '/run/media/ramumsrk/ata_1_0_TiB/pgsql/18/www_sqlservercentral_com_temp/'\g
+SELECT * FROM pg_catalog.pg_tablespace WHERE name LIKE 'www_sqlservercentral_com_%'\gx
+SELECT * FROM pg_catalog.pg_tablespace WHERE spcname LIKE 'www_sqlservercentral_com_%'\gx
+\h CREATE DATABASE
+CREATE DATABASE www_sqlservercentral_comWITHOWNER = www_sqlservercentral_comTABLESPACE = www_sqlservercentral_com_dataALLOW_CONNECTIONS = trueCONNECTION LIMIT = -1IS_TEMPLATE = falseTEMPLATE = template0ENCODING = UTF8LOCALE_CTYPE = 'C.UTF-8'LOCALE_COLLATE = 'C.UTF-8'LOCALE_PROVIDER = libcCOLLATION_VERSION = '2.42'BUILTIN_LOCALE = pg_unicode_fastICU_LOCALE = UTF8\g
+CREATE DATABASE www_sqlservercentral_comWITHOWNER = www_sqlservercentral_comTABLESPACE = www_sqlservercentral_com_dataIS_TEMPLATE = falseTEMPLATE = template0CONNECTION LIMIT = -1ALLOW_CONNECTIONS = trueENCODING = UTF8LOCALE = 'C.UTF-8'LC_COLLATE = 'C.UTF-8'LC_CTYPE = 'C.UTF-8'LOCALE_PROVIDER = libcCOLLATION_VERSION = '2.42'BUILTIN_LOCALE = pg_unicode_fastICU_LOCALE = UTF8
+\g
+\e
+CREATE DATABASE www_sqlservercentral_comWITHOWNER = www_sqlservercentral_comTABLESPACE = www_sqlservercentral_com_dataIS_TEMPLATE = falseTEMPLATE = template0CONNECTION LIMIT = -1ALLOW_CONNECTIONS = trueENCODING = UTF8LOCALE = 'C.UTF-8'LC_COLLATE = 'C.UTF-8'LC_CTYPE = 'C.UTF-8'LOCALE_PROVIDER = libcCOLLATION_VERSION = '2.42'ICU_LOCALE = UTF8\g
+\e
+CREATE DATABASE www_sqlservercentral_comWITHOWNER = www_sqlservercentral_comTABLESPACE = www_sqlservercentral_com_dataIS_TEMPLATE = falseTEMPLATE = template0CONNECTION LIMIT = -1ALLOW_CONNECTIONS = trueENCODING = UTF8LOCALE = 'C.UTF-8'LC_COLLATE = 'C.UTF-8'LC_CTYPE = 'C.UTF-8'LOCALE_PROVIDER = libcCOLLATION_VERSION = '2.42'\g
+\connect www_sqlservercentral_com
+SELECT * FROM pg_catalog.pg_extension WHERE name = 'pg_stat_statements'\gx
+SELECT * FROM pg_catalog.pg_extension WHERE extname = 'pg_stat_statements'\gx
+SELECT * FROM pg_catalog.pg_available_extensions WHERE extname = 'pg_stat_statements'\gx
+SELECT * FROM pg_catalog.pg_available_extensions WHERE name = 'pg_stat_statements'\gx
+CREATE SCHEMA IF NOT EXISTS chandan_shukla AUTHORIZATION www_sqlservercentral_com\g
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA chandan_shukla VERSION '1.12' CASCADE\g
+\conninfo
+SELECT CURRENT_DATABASE(), USER, CURRENT_USER, SESSION_USER, CURRENT_ROLE, CURRENT_SCHEMA, CURRENT_DATE, CURRENT_TIME, CURRENT_TIMESTAMP\gx
+\q
+\timing on
+\pset pager 0
+\pset pager_min_lines 1000
+\pset null NULL
+ALTER DATABASE www_sqlservercentral_com REFRESH COLLATION VERSION\g
+END WORK\g
+SELECT TXID_CURRENT()\g
+\e
+CREATE UNLOGGED TABLE IF NOT EXISTS chandan_shulka.first_table(    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL DEFAULT 0::smallint,    second_column TEXT STORAGE default COMPRESSION default CONSTRAINT nn_second_column NOT NULL DEFAULT ''::text)TABLESPACE www_sqlservercentral_com_data\g
+END WORK\g
+\dnx+
+SELECT TXID_CURRENT()\g
+CREATE UNLOGGED TABLE IF NOT EXISTS chandan_shukla.first_table(    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL DEFAULT 0::smallint,    second_column TEXT STORAGE default COMPRESSION default CONSTRAINT nn_second_column NOT NULL DEFAULT ''::text)TABLESPACE www_sqlservercentral_com_data\g
+END TRANSACTION\g
+\dtx+ chandan_shukla.first_table
+\d+ chandan_shukla.first_table
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY chandan_shukla.first_table\g
+CREATE TABLE IF NOT EXISTS chandan_shukla.second_table(    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL DEFAULT 0::smallint,    second_column TEXT STORAGE default COMPRESSION default CONSTRAINT nn_second_column NOT NULL DEFAULT ''::text)TABLESPACE www_sqlservercentral_com_data\g
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY chandan_shukla.second_table\g
+\dtx+ chandan_shukla.second_table
+\d+ chandan_shukla.second_table
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO chandan_shukla.second_table (first_column, second_column) SELECT g, MD5(RANDOM()::text) FROM pg_catalog.generate_series(1, 10000) g\g
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO chandan_shukla.first_table (first_column, second_column) SELECT g, MD5(RANDOM()::text) FROM pg_catalog.generate_series(1, 10000) g\g
+SELECT * FROM chandan_shukla.pg_stat_statements WHERE queryid IN (6456118323983544280, 9012403632854415405)\gx
+SELECT * FROM chandan_shukla.pg_stat_statements WHERE query LIKE 'INSERT%'\gx
+SELECT * FROM chandan_shukla.pg_stat_statements FETCH FIRST 1 ROW\gx
+END WORK\g
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'chandan_shukla' ORDER BY table_name ASC\g
+SELECT * FROM chandan_shukla.pg_stat_statements FETCH FIRST 1 ROW ONLY\gx
+\dtx+ chandan_shukla.pg_stat_statements
+\dvx+ chandan_shukla.pg_stat_statements
+CREATE TABLE IF NOT EXISTS chandan_shukla.second_table(    first_column SMALLINT STORAGE default COMPRESSION default CONSTRAINT nn_first_column NOT NULL DEFAULT 0::smallint,    second_column TEXT STORAGE default COMPRESSION default CONSTRAINT nn_second_column NOT NULL DEFAULT ''::text)TABLESPACE www_sqlservercentral_com_data\g
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'chandan_shukla' ORDER BY table_name ASC\g
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO chandan_shukla.first_table (first_column, second_column) SELECT g, MD5(RANDOM()::text) FROM pg_catalog.generate_series(1, 10000) g\g
+EXPLAIN (ANALYZE, TIMING, SETTINGS, VERBOSE, BUFFERS, MEMORY, COSTS, WAL, FORMAT TEXT) INSERT INTO chandan_shukla.second_table (first_column, second_column) SELECT g, MD5(RANDOM()::text) FROM pg_catalog.generate_series(1, 10000) g\g
+ANALYZE (VERBOSE, SKIP_LOCKED false) ONLY chandan_shukla.second_table, chandan_shukla.first_table\g
+END WORK\g
+\q
