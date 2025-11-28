@@ -1,0 +1,1 @@
+# [2025](https://www.thatguyfromdelhi.com/2025/)
